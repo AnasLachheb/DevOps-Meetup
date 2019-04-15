@@ -1,0 +1,9 @@
+- name: test
+  hosts: vagrant
+  become: true
+  tasks:
+    - file:
+        path: /home/vagrant/test
+        state: directory
+  roles:
+    - geerlingguy.apache

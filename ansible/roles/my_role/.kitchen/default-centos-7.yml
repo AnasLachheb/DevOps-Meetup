@@ -1,0 +1,9 @@
+---
+username: kitchen
+ssh_key: "/home/mohamed/devops-meetup/ansible/roles/my_role/.kitchen/docker_id_rsa"
+image_id: 6a706783f99f
+container_id: 842f65a77543c5455952e51dd6de3a7b96f80d2d62b4b2e24f337eb0b888c535
+hostname: localhost
+port: 32776
+last_action: create
+last_error: 
