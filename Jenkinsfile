@@ -7,7 +7,7 @@ node('master'){
         parallel 'Test on Ubuntu' : {
             stage('ubuntu'){
 
-                sh 'cd ansible && kitchen test ubuntu'
+                sh 'cd ansible/roles/my_role && kitchen test ubuntu'
             }
         }, 'Test on Centos' : {
             stage('test on Centos'){
