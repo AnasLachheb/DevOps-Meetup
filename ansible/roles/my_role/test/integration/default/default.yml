@@ -1,3 +1,5 @@
 - hosts: test-kitchen
+  become: true
   roles:
+    - role: geerlingguy.apache
     - role: my_role
