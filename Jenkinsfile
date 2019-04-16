@@ -11,7 +11,6 @@ node('master'){
             }
         }, 'Test on Centos' : {
             stage('test on Centos'){
-                sh 'cd ansible/roles/my_role && kitchen test centos'
             }
         }
 
