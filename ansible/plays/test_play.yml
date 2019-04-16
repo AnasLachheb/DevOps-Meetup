@@ -2,4 +2,5 @@
   hosts: vagrant
   become: true
   roles:
+    - ansible-role-apache
     - my_role
