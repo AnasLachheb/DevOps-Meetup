@@ -3,6 +3,9 @@ node('master'){
             {
                 checkout scm
             }
+    stage('Kitchen create'){
+        sh 'cd ansible/roles/my_role && kitchen create ubuntu'
+    }
     stage('Kitchen converge'){
         sh 'cd ansible/roles/my_role && kitchen converge ubuntu'
     }
