@@ -14,3 +14,14 @@ end
 describe file('/var/www/index.html') do
   it { should be_file }
 end
+
+
+
+describe file('/var/www/index.html') do
+  it { should be_file }
+end
+
+
+describe file('/var/www/index.html') do
+  its(:content) { should match /Welcome to DevOps Rabat Meetup/ }
+end

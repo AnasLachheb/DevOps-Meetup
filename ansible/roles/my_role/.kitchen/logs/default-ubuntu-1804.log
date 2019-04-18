@@ -1,824 +1,102 @@
-I, [2019-04-17T00:07:41.457160 #22258]  INFO -- default-ubuntu-1804: -----> Cleaning up any prior instances of <default-ubuntu-1804>
-I, [2019-04-17T00:07:41.457618 #22258]  INFO -- default-ubuntu-1804: -----> Destroying <default-ubuntu-1804>...
-I, [2019-04-17T00:07:41.505660 #22258]  INFO -- default-ubuntu-1804: UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
-I, [2019-04-17T00:07:41.505879 #22258]  INFO -- default-ubuntu-1804: root                2494                2467                0                   Apr16               ?                   00:00:00            /usr/sbin/sshd -D -o UseDNS=no -o UsePAM=no -o PasswordAuthentication=yes -o UsePrivilegeSeparation=no -o PidFile=/tmp/sshd.pid
-I, [2019-04-17T00:07:41.505912 #22258]  INFO -- default-ubuntu-1804: root                6933                2494                0                   Apr16               ?                   00:00:00            /usr/sbin/apache2 -k start
-I, [2019-04-17T00:07:41.505932 #22258]  INFO -- default-ubuntu-1804: www-data            6936                6933                0                   Apr16               ?                   00:00:00            /usr/sbin/apache2 -k start
-I, [2019-04-17T00:07:41.505955 #22258]  INFO -- default-ubuntu-1804: www-data            6937                6933                0                   Apr16               ?                   00:00:00            /usr/sbin/apache2 -k start
-I, [2019-04-17T00:07:42.050212 #22258]  INFO -- default-ubuntu-1804: 5585727ef769a55ed391af3d61ea1c477acd90d988e02fdf936f5921a4aa8740
-I, [2019-04-17T00:07:42.697754 #22258]  INFO -- default-ubuntu-1804: 5585727ef769a55ed391af3d61ea1c477acd90d988e02fdf936f5921a4aa8740
-I, [2019-04-17T00:07:42.710853 #22258]  INFO -- default-ubuntu-1804: Finished destroying <default-ubuntu-1804> (0m1.25s).
-I, [2019-04-17T00:07:42.713787 #22258]  INFO -- default-ubuntu-1804: -----> Testing <default-ubuntu-1804>
-I, [2019-04-17T00:07:42.713868 #22258]  INFO -- default-ubuntu-1804: -----> Creating <default-ubuntu-1804>...
-I, [2019-04-17T00:07:42.817592 #22258]  INFO -- default-ubuntu-1804: Sending build context to Docker daemon  310.8kB
-I, [2019-04-17T00:07:42.848639 #22258]  INFO -- default-ubuntu-1804: Step 1/17 : FROM ubuntu:18.04
-I, [2019-04-17T00:07:42.849444 #22258]  INFO -- default-ubuntu-1804:  ---> 94e814e2efa8
-I, [2019-04-17T00:07:42.849566 #22258]  INFO -- default-ubuntu-1804: Step 2/17 : RUN [ ! -f "/sbin/initctl" ] || dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
-I, [2019-04-17T00:07:42.850158 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.850271 #22258]  INFO -- default-ubuntu-1804:  ---> 4ac861165298
-I, [2019-04-17T00:07:42.850502 #22258]  INFO -- default-ubuntu-1804: Step 3/17 : ENV DEBIAN_FRONTEND noninteractive
-I, [2019-04-17T00:07:42.851071 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.851168 #22258]  INFO -- default-ubuntu-1804:  ---> d4f97211f215
-I, [2019-04-17T00:07:42.851256 #22258]  INFO -- default-ubuntu-1804: Step 4/17 : ENV container docker
-I, [2019-04-17T00:07:42.851947 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.852045 #22258]  INFO -- default-ubuntu-1804:  ---> 245e6e279b3b
-I, [2019-04-17T00:07:42.852371 #22258]  INFO -- default-ubuntu-1804: Step 5/17 : RUN apt-get update
-I, [2019-04-17T00:07:42.852797 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.852891 #22258]  INFO -- default-ubuntu-1804:  ---> 5513bb877572
-I, [2019-04-17T00:07:42.852957 #22258]  INFO -- default-ubuntu-1804: Step 6/17 : RUN apt-get install -y sudo openssh-server curl lsb-release
-I, [2019-04-17T00:07:42.853692 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.853790 #22258]  INFO -- default-ubuntu-1804:  ---> 774863683e89
-I, [2019-04-17T00:07:42.853868 #22258]  INFO -- default-ubuntu-1804: Step 7/17 : RUN if ! getent passwd kitchen; then                 useradd -d /home/kitchen -m -s /bin/bash -p '*' kitchen;               fi
-I, [2019-04-17T00:07:42.854505 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.854597 #22258]  INFO -- default-ubuntu-1804:  ---> db747e7182d4
-I, [2019-04-17T00:07:42.854668 #22258]  INFO -- default-ubuntu-1804: Step 8/17 : RUN echo "kitchen ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-I, [2019-04-17T00:07:42.855386 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.855486 #22258]  INFO -- default-ubuntu-1804:  ---> 7bc937367887
-I, [2019-04-17T00:07:42.855552 #22258]  INFO -- default-ubuntu-1804: Step 9/17 : RUN echo "Defaults !requiretty" >> /etc/sudoers
-I, [2019-04-17T00:07:42.856324 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.856416 #22258]  INFO -- default-ubuntu-1804:  ---> 70ce482d4475
-I, [2019-04-17T00:07:42.856634 #22258]  INFO -- default-ubuntu-1804: Step 10/17 : RUN mkdir -p /home/kitchen/.ssh
-I, [2019-04-17T00:07:42.857168 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.857260 #22258]  INFO -- default-ubuntu-1804:  ---> b6388e895659
-I, [2019-04-17T00:07:42.857331 #22258]  INFO -- default-ubuntu-1804: Step 11/17 : RUN chown -R kitchen /home/kitchen/.ssh
-I, [2019-04-17T00:07:42.858037 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.858131 #22258]  INFO -- default-ubuntu-1804:  ---> e3befbf1d66f
-I, [2019-04-17T00:07:42.858193 #22258]  INFO -- default-ubuntu-1804: Step 12/17 : RUN chmod 0700 /home/kitchen/.ssh
-I, [2019-04-17T00:07:42.858979 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.859071 #22258]  INFO -- default-ubuntu-1804:  ---> b093288aa711
-I, [2019-04-17T00:07:42.859289 #22258]  INFO -- default-ubuntu-1804: Step 13/17 : RUN touch /home/kitchen/.ssh/authorized_keys
-I, [2019-04-17T00:07:42.859991 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.860086 #22258]  INFO -- default-ubuntu-1804:  ---> de3b732ee312
-I, [2019-04-17T00:07:42.860156 #22258]  INFO -- default-ubuntu-1804: Step 14/17 : RUN chown kitchen /home/kitchen/.ssh/authorized_keys
-I, [2019-04-17T00:07:42.860931 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.861119 #22258]  INFO -- default-ubuntu-1804:  ---> 5681fa0eafbc
-I, [2019-04-17T00:07:42.861194 #22258]  INFO -- default-ubuntu-1804: Step 15/17 : RUN chmod 0600 /home/kitchen/.ssh/authorized_keys
-I, [2019-04-17T00:07:42.861888 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.862018 #22258]  INFO -- default-ubuntu-1804:  ---> 88bd59ab616a
-I, [2019-04-17T00:07:42.862079 #22258]  INFO -- default-ubuntu-1804: Step 16/17 : RUN mkdir -p /run/sshd
-I, [2019-04-17T00:07:42.863756 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.863880 #22258]  INFO -- default-ubuntu-1804:  ---> d4816ab02a7c
-I, [2019-04-17T00:07:42.863963 #22258]  INFO -- default-ubuntu-1804: Step 17/17 : RUN echo ssh-rsa\ AAAAB3NzaC1yc2EAAAADAQABAAABAQDXVskyJwduMVTEi6wMl28RtDrKDZUe0jYhKaZEB49/CTa/dJtiPqc0fY5MLWOXYFSGDWiF8i4g9pvyuvJohWzlX5BrurkAFSinJPD25VcEEuAXCksXt5CCdEd5i6Gn1wQUAeUr9e8LKyn09zCzPWtlxVOxE3laLyAksenxWuhBoG3Bb9VjIWBjhFaCxr\+b2/J4jtQFnNYyZJ44DcXoDUn0D/nlf6OFcHsPJbTnNdVLe55D4hjUp2xzhdNE50GVpPETZCRPgYBq17EOU/bnQzMXNfOQ8UPOUf3SbCm73GPB0SL6SY529kLxk2A51wtBhwxHXnBwHeaxK0DN0Jdyekyj\ kitchen_docker_key >> /home/kitchen/.ssh/authorized_keys
-I, [2019-04-17T00:07:42.864250 #22258]  INFO -- default-ubuntu-1804:  ---> Using cache
-I, [2019-04-17T00:07:42.864322 #22258]  INFO -- default-ubuntu-1804:  ---> b141b1f617fa
-I, [2019-04-17T00:07:42.867229 #22258]  INFO -- default-ubuntu-1804: Successfully built b141b1f617fa
-I, [2019-04-17T00:07:43.063477 #22258]  INFO -- default-ubuntu-1804: abba84b9eb3cc25655a8b79206aa29eaa9dd0e3e33859435daea78e4b46459f3
-I, [2019-04-17T00:07:43.494824 #22258]  INFO -- default-ubuntu-1804: 0.0.0.0:32791
-I, [2019-04-17T00:07:43.637531 #22258]  INFO -- default-ubuntu-1804: [SSH] Established
-I, [2019-04-17T00:07:43.640503 #22258]  INFO -- default-ubuntu-1804: Finished creating <default-ubuntu-1804> (0m0.92s).
-I, [2019-04-17T00:07:43.640791 #22258]  INFO -- default-ubuntu-1804: -----> Converging <default-ubuntu-1804>...
-I, [2019-04-17T00:07:43.641993 #22258]  INFO -- default-ubuntu-1804: Preparing files for transfer
-I, [2019-04-17T00:07:43.642126 #22258]  INFO -- default-ubuntu-1804: Preparing playbook
-I, [2019-04-17T00:07:43.642761 #22258]  INFO -- default-ubuntu-1804: Preparing inventory
-I, [2019-04-17T00:07:43.642953 #22258]  INFO -- default-ubuntu-1804: Preparing modules
-I, [2019-04-17T00:07:43.643243 #22258]  INFO -- default-ubuntu-1804: nothing to do for modules
-I, [2019-04-17T00:07:43.643355 #22258]  INFO -- default-ubuntu-1804: Preparing roles
-I, [2019-04-17T00:07:43.668296 #22258]  INFO -- default-ubuntu-1804: Preparing ansible.cfg file
-I, [2019-04-17T00:07:43.668531 #22258]  INFO -- default-ubuntu-1804: Empty ansible.cfg generated
-I, [2019-04-17T00:07:43.668659 #22258]  INFO -- default-ubuntu-1804: Preparing group_vars
-I, [2019-04-17T00:07:43.668833 #22258]  INFO -- default-ubuntu-1804: nothing to do for group_vars
-I, [2019-04-17T00:07:43.668910 #22258]  INFO -- default-ubuntu-1804: Preparing additional_copy_path
-I, [2019-04-17T00:07:43.669131 #22258]  INFO -- default-ubuntu-1804: Preparing host_vars
-I, [2019-04-17T00:07:43.669345 #22258]  INFO -- default-ubuntu-1804: nothing to do for host_vars
-I, [2019-04-17T00:07:43.669446 #22258]  INFO -- default-ubuntu-1804: Preparing hosts file
-I, [2019-04-17T00:07:43.669691 #22258]  INFO -- default-ubuntu-1804: Preparing spec
-I, [2019-04-17T00:07:43.669861 #22258]  INFO -- default-ubuntu-1804: nothing to do for spec
-I, [2019-04-17T00:07:43.669947 #22258]  INFO -- default-ubuntu-1804: Preparing library plugins
-I, [2019-04-17T00:07:43.670216 #22258]  INFO -- default-ubuntu-1804: nothing to do for library plugins
-I, [2019-04-17T00:07:43.670288 #22258]  INFO -- default-ubuntu-1804: Preparing callback plugins
-I, [2019-04-17T00:07:43.670557 #22258]  INFO -- default-ubuntu-1804: nothing to do for callback plugins
-I, [2019-04-17T00:07:43.670628 #22258]  INFO -- default-ubuntu-1804: Preparing filter_plugins
-I, [2019-04-17T00:07:43.670835 #22258]  INFO -- default-ubuntu-1804: nothing to do for filter_plugins
-I, [2019-04-17T00:07:43.670906 #22258]  INFO -- default-ubuntu-1804: Preparing lookup_plugins
-I, [2019-04-17T00:07:43.671155 #22258]  INFO -- default-ubuntu-1804: nothing to do for lookup_plugins
-I, [2019-04-17T00:07:43.671282 #22258]  INFO -- default-ubuntu-1804: Preparing ansible vault password
-I, [2019-04-17T00:07:43.671464 #22258]  INFO -- default-ubuntu-1804: Preparing additional_ssh_private_keys
-I, [2019-04-17T00:07:43.671606 #22258]  INFO -- default-ubuntu-1804: nothing to do for additional_ssh_private_keys
-I, [2019-04-17T00:07:43.671679 #22258]  INFO -- default-ubuntu-1804: Finished Preparing files for transfer
-I, [2019-04-17T00:07:43.672117 #22258]  INFO -- default-ubuntu-1804: Installing ansible, will try to determine platform os
-I, [2019-04-17T00:07:44.197110 #22258]  INFO -- default-ubuntu-1804: 0% [Working]            Hit:1 http://archive.ubuntu.com/ubuntu bionic InRelease
-I, [2019-04-17T00:07:44.229450 #22258]  INFO -- default-ubuntu-1804: 0% [Waiting for headers]0% [1 InRelease gpgv 242 kB] [Waiting for headers] [Waiting for headers]                                                                        Get:2 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
-I, [2019-04-17T00:07:44.276973 #22258]  INFO -- default-ubuntu-1804: 0% [1 InRelease gpgv 242 kB] [Waiting for headers] [2 InRelease 2269 B/88.7 kB                                                                                Get:3 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
-I, [2019-04-17T00:07:44.798903 #22258]  INFO -- default-ubuntu-1804: 0% [1 InRelease gpgv 242 kB] [3 InRelease 2284 B/88.7 kB 3%] [2 InRelease 12.6                                                                                0% [3 InRelease 11.3 kB/88.7 kB 13%] [2 InRelease 12.6 kB/88.7 kB 14%]                                                                      0% [3 InRelease 77.0 kB/88.7 kB 87%]0% [2 InRelease gpgv 88.7 kB] [3 InRelease 77.0 kB/88.7 kB 87%]                                                               0% [3 InRelease 87.3 kB/88.7 kB 98%]                                    0% [Waiting for headers]0% [3 InRelease gpgv 88.7 kB] [Waiting for headers] [Waiting for headers]                                                                         Get:4 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [4171 B]
-I, [2019-04-17T00:07:44.823210 #22258]  INFO -- default-ubuntu-1804: 0% [3 InRelease gpgv 88.7 kB] [Waiting for headers] [4 Packages 4171 B/4171 B 1                                                                               0% [3 InRelease gpgv 88.7 kB] [Waiting for headers]0% [4 Packages store 0 B] [3 InRelease gpgv 88.7 kB] [Waiting for headers] [Wai                                                                               0% [3 InRelease gpgv 88.7 kB] [Waiting for headers] [Waiting for headers]                                                                         Get:5 http://archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
-I, [2019-04-17T00:07:44.959080 #22258]  INFO -- default-ubuntu-1804: 0% [3 InRelease gpgv 88.7 kB] [5 InRelease 2284 B/74.6 kB 3%] [Waiting for head                                                                               0% [5 InRelease 24.2 kB/74.6 kB 32%] [Waiting for headers]                                                          Get:6 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [301 kB]
-I, [2019-04-17T00:07:45.179564 #22258]  INFO -- default-ubuntu-1804:                                                           0% [6 Packages 2367 B/301 kB 1%]0% [5 InRelease gpgv 74.6 kB] [6 Packages 3655 B/301 kB 1%]                                                           27% [Waiting for headers] [6 Packages 100 kB/301 kB 33%]                                                        Get:7 http://archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 Packages [7238 B]
-I, [2019-04-17T00:07:45.186389 #22258]  INFO -- default-ubuntu-1804: 28% [7 Packages 6234 B/7238 B 86%] [6 Packages 111 kB/301 kB 37%]                                                                 28% [Waiting for headers] [6 Packages 112 kB/301 kB 37%]                                                        Get:8 http://archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1103 kB]
-I, [2019-04-17T00:07:45.770328 #22258]  INFO -- default-ubuntu-1804: 28% [8 Packages 73 B/1103 kB 0%] [6 Packages 112 kB/301 kB 37%]28% [7 Packages store 0 B] [8 Packages 73 B/1103 kB 0%] [6 Packages 112 kB/301                                                                                28% [8 Packages 73 B/1103 kB 0%] [6 Packages 112 kB/301 kB 37%]38% [8 Packages 165 kB/1103 kB 15%] [6 Packages 277 kB/301 kB 92%]                                                                  39% [8 Packages 204 kB/1103 kB 18%] [Waiting for headers]                                                         Get:9 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [410 kB]
-I, [2019-04-17T00:07:48.080948 #22258]  INFO -- default-ubuntu-1804: 40% [8 Packages 204 kB/1103 kB 18%] [9 Packages 2246 B/410 kB 1%]40% [6 Packages store 0 B] [8 Packages 204 kB/1103 kB 18%] [9 Packages 2246 B/4                                                                               41% [8 Packages 204 kB/1103 kB 18%] [9 Packages 35.7 kB/410 kB 9%]51% [8 Packages 350 kB/1103 kB 32%] [9 Packages 233 kB/410 kB 57%]61% [8 Packages 536 kB/1103 kB 49%] [9 Packages 407 kB/410 kB 99%]                                                                  61% [8 Packages 537 kB/1103 kB 49%]61% [9 Packages store 0 B] [8 Packages 537 kB/1103 kB 49%]                                                          62% [8 Packages 567 kB/1103 kB 51%]68% [8 Packages 772 kB/1103 kB 70%]75% [8 Packages 1014 kB/1103 kB 92%]                                    78% [Waiting for headers]                         Get:10 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [752 kB]
-I, [2019-04-17T00:07:49.356428 #22258]  INFO -- default-ubuntu-1804: 78% [10 Packages 452 B/752 kB 0%]78% [8 Packages store 0 B] [10 Packages 452 B/752 kB 0%]                                                        80% [10 Packages 66.1 kB/752 kB 9%]88% [10 Packages 353 kB/752 kB 47%]98% [10 Packages 697 kB/752 kB 93%]                                   99% [Working]99% [10 Packages store 0 B]                           100% [Working]              Fetched 2830 kB in 5s (519 kB/s)
-I, [2019-04-17T00:07:50.202742 #22258]  INFO -- default-ubuntu-1804: Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 78%Reading package lists... 78%Reading package lists... 79%Reading package lists... 79%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 90%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
-I, [2019-04-17T00:07:51.099025 #22258]  INFO -- default-ubuntu-1804: Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 78%Reading package lists... 78%Reading package lists... 79%Reading package lists... 79%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 91%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
-I, [2019-04-17T00:07:51.272573 #22258]  INFO -- default-ubuntu-1804: Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
-I, [2019-04-17T00:07:51.274360 #22258]  INFO -- default-ubuntu-1804: Reading state information... 0%Reading state information... 1%Reading state information... Done
-I, [2019-04-17T00:07:51.407987 #22258]  INFO -- default-ubuntu-1804: The following additional packages will be installed:
-I, [2019-04-17T00:07:51.408186 #22258]  INFO -- default-ubuntu-1804:   apt git-man gnupg gnupg-l10n gnupg-utils gpg gpg-agent gpg-wks-client
-I, [2019-04-17T00:07:51.408329 #22258]  INFO -- default-ubuntu-1804:   gpg-wks-server gpgconf gpgsm less libapt-inst2.0 libapt-pkg5.0 libassuan0
-I, [2019-04-17T00:07:51.408545 #22258]  INFO -- default-ubuntu-1804:   libcurl3-gnutls liberror-perl libgdbm-compat4 libgdbm5 libksba8 libnpth0
-I, [2019-04-17T00:07:51.408679 #22258]  INFO -- default-ubuntu-1804:   libperl5.26 netbase patch perl perl-modules-5.26 pinentry-curses
-I, [2019-04-17T00:07:51.409962 #22258]  INFO -- default-ubuntu-1804: Suggested packages:
-I, [2019-04-17T00:07:51.410023 #22258]  INFO -- default-ubuntu-1804:   apt-doc aptitude | synaptic | wajig dpkg-dev powermgmt-base
-I, [2019-04-17T00:07:51.410069 #22258]  INFO -- default-ubuntu-1804:   dbus-user-session pinentry-gnome3 tor gettext-base git-daemon-run
-I, [2019-04-17T00:07:51.410095 #22258]  INFO -- default-ubuntu-1804:   | git-daemon-sysvinit git-doc git-el git-email git-gui gitk gitweb git-cvs
-I, [2019-04-17T00:07:51.410111 #22258]  INFO -- default-ubuntu-1804:   git-mediawiki git-svn parcimonie xloadimage scdaemon gdbm-l10n ed
-I, [2019-04-17T00:07:51.410125 #22258]  INFO -- default-ubuntu-1804:   diffutils-doc perl-doc libterm-readline-gnu-perl
-I, [2019-04-17T00:07:51.410139 #22258]  INFO -- default-ubuntu-1804:   | libterm-readline-perl-perl make pinentry-doc
-I, [2019-04-17T00:07:51.465104 #22258]  INFO -- default-ubuntu-1804: The following NEW packages will be installed:
-I, [2019-04-17T00:07:51.465308 #22258]  INFO -- default-ubuntu-1804:   apt-utils dirmngr git git-man gnupg gnupg-l10n gnupg-utils gpg gpg-agent
-I, [2019-04-17T00:07:51.465482 #22258]  INFO -- default-ubuntu-1804:   gpg-wks-client gpg-wks-server gpgconf gpgsm less libapt-inst2.0 libassuan0
-I, [2019-04-17T00:07:51.465620 #22258]  INFO -- default-ubuntu-1804:   libcurl3-gnutls liberror-perl libgdbm-compat4 libgdbm5 libksba8 libnpth0
-I, [2019-04-17T00:07:51.465798 #22258]  INFO -- default-ubuntu-1804:   libperl5.26 netbase patch perl perl-modules-5.26 pinentry-curses
-I, [2019-04-17T00:07:51.466234 #22258]  INFO -- default-ubuntu-1804: The following packages will be upgraded:
-I, [2019-04-17T00:07:51.467259 #22258]  INFO -- default-ubuntu-1804:   apt libapt-pkg5.0
-I, [2019-04-17T00:07:51.473608 #22258]  INFO -- default-ubuntu-1804: 2 upgraded, 28 newly installed, 0 to remove and 8 not upgraded.
-I, [2019-04-17T00:07:51.473665 #22258]  INFO -- default-ubuntu-1804: Need to get 16.0 MB of archives.
-I, [2019-04-17T00:07:51.473704 #22258]  INFO -- default-ubuntu-1804: After this operation, 84.0 MB of additional disk space will be used.
-I, [2019-04-17T00:07:51.679644 #22258]  INFO -- default-ubuntu-1804: 0% [Working]            Get:1 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libapt-pkg5.0 amd64 1.6.10 [805 kB]
-I, [2019-04-17T00:07:52.719588 #22258]  INFO -- default-ubuntu-1804: 0% [1 libapt-pkg5.0 2293 B/805 kB 0%]2% [1 libapt-pkg5.0 328 kB/805 kB 41%]                                      5% [Working]            Get:2 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apt amd64 1.6.10 [1165 kB]
-I, [2019-04-17T00:07:54.616051 #22258]  INFO -- default-ubuntu-1804: 5% [2 apt 1003 B/1165 kB 0%]6% [2 apt 293 kB/1165 kB 25%]8% [2 apt 588 kB/1165 kB 51%]9% [2 apt 878 kB/1165 kB 75%]                             11% [Waiting for headers]                         Get:3 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 perl-modules-5.26 all 5.26.1-6ubuntu0.3 [2763 kB]
-I, [2019-04-17T00:07:59.521498 #22258]  INFO -- default-ubuntu-1804: 11% [3 perl-modules-5.26 1386 B/2763 kB 0%]14% [3 perl-modules-5.26 513 kB/2763 kB 19%]16% [3 perl-modules-5.26 964 kB/2763 kB 35%]17% [3 perl-modules-5.26 1239 kB/2763 kB 45%]18% [3 perl-modules-5.26 1382 kB/2763 kB 50%]19% [3 perl-modules-5.26 1550 kB/2763 kB 56%]20% [3 perl-modules-5.26 1731 kB/2763 kB 63%]                      603 kB/s 20s20% [3 perl-modules-5.26 1854 kB/2763 kB 67%]                      603 kB/s 20s21% [3 perl-modules-5.26 1882 kB/2763 kB 68%]                      603 kB/s 20s24% [3 perl-modules-5.26 2499 kB/2763 kB 90%]                      603 kB/s 19s26% [Waiting for headers]                                          603 kB/s 18s                                                                               Get:4 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgdbm5 amd64 1.14.1-6 [26.0 kB]
-I, [2019-04-17T00:07:59.550418 #22258]  INFO -- default-ubuntu-1804: 26% [4 libgdbm5 7713 B/26.0 kB 30%]                                603 kB/s 18s26% [Waiting for headers]                                          603 kB/s 18s                                                                               Get:5 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgdbm-compat4 amd64 1.14.1-6 [6084 B]
-I, [2019-04-17T00:07:59.565179 #22258]  INFO -- default-ubuntu-1804: 26% [5 libgdbm-compat4 713 B/6084 B 12%]                           603 kB/s 18s27% [Working]                                                      603 kB/s 18s                                                                               Get:6 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libperl5.26 amd64 5.26.1-6ubuntu0.3 [3527 kB]
-I, [2019-04-17T00:08:06.214841 #22258]  INFO -- default-ubuntu-1804: 27% [6 libperl5.26 784 B/3527 kB 0%]                               603 kB/s 18s28% [6 libperl5.26 93.5 kB/3527 kB 3%]                             603 kB/s 18s32% [6 libperl5.26 985 kB/3527 kB 28%]                             603 kB/s 17s34% [6 libperl5.26 1335 kB/3527 kB 38%]                            603 kB/s 16s35% [6 libperl5.26 1541 kB/3527 kB 44%]                            603 kB/s 16s37% [6 libperl5.26 2006 kB/3527 kB 57%]                            603 kB/s 15s38% [6 libperl5.26 2120 kB/3527 kB 60%]                            603 kB/s 15s39% [6 libperl5.26 2310 kB/3527 kB 65%]                            603 kB/s 14s40% [6 libperl5.26 2599 kB/3527 kB 74%]                            603 kB/s 14s41% [6 libperl5.26 2738 kB/3527 kB 78%]                            589 kB/s 14s42% [6 libperl5.26 3038 kB/3527 kB 86%]                            589 kB/s 13s43% [6 libperl5.26 3186 kB/3527 kB 90%]                            589 kB/s 13s44% [6 libperl5.26 3324 kB/3527 kB 94%]                            589 kB/s 13s44% [6 libperl5.26 3471 kB/3527 kB 98%]                            589 kB/s 13s45% [Waiting for headers]                                          589 kB/s 13s                                                                               Get:7 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 perl amd64 5.26.1-6ubuntu0.3 [201 kB]
-I, [2019-04-17T00:08:06.773591 #22258]  INFO -- default-ubuntu-1804: 45% [7 perl 2265 B/201 kB 1%]                                      589 kB/s 13s46% [7 perl 177 kB/201 kB 88%]                                     589 kB/s 12s47% [Waiting for headers]                                          589 kB/s 12s                                                                               Get:8 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libapt-inst2.0 amd64 1.6.10 [55.6 kB]
-I, [2019-04-17T00:08:06.895718 #22258]  INFO -- default-ubuntu-1804: 47% [8 libapt-inst2.0 5340 B/55.6 kB 10%]                          589 kB/s 12s48% [Waiting for headers]                                          589 kB/s 12s                                                                               Get:9 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apt-utils amd64 1.6.10 [208 kB]
-I, [2019-04-17T00:08:07.284725 #22258]  INFO -- default-ubuntu-1804: 48% [9 apt-utils 2285 B/208 kB 1%]                                 589 kB/s 12s50% [Working]                                                      589 kB/s 12s                                                                               Get:10 http://archive.ubuntu.com/ubuntu bionic/main amd64 less amd64 487-0.1 [112 kB]
-I, [2019-04-17T00:08:07.724372 #22258]  INFO -- default-ubuntu-1804: 50% [10 less 962 B/112 kB 1%]                                      589 kB/s 12s51% [Working]                                                      589 kB/s 12s                                                                               Get:11 http://archive.ubuntu.com/ubuntu bionic/main amd64 netbase all 5.4 [12.7 kB]
-I, [2019-04-17T00:08:07.728002 #22258]  INFO -- default-ubuntu-1804: 51% [11 netbase 1225 B/12.7 kB 10%]                                589 kB/s 12s52% [Waiting for headers]                                          589 kB/s 12s                                                                               Get:12 http://archive.ubuntu.com/ubuntu bionic/main amd64 libassuan0 amd64 2.5.1-2 [35.0 kB]
-I, [2019-04-17T00:08:07.729579 #22258]  INFO -- default-ubuntu-1804: 52% [12 libassuan0 27.5 kB/35.0 kB 79%]                            589 kB/s 12s52% [Working]                                                      589 kB/s 12s                                                                               Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gpgconf amd64 2.2.4-1ubuntu1.2 [123 kB]
-I, [2019-04-17T00:08:07.970599 #22258]  INFO -- default-ubuntu-1804: 53% [13 gpgconf 57.8 kB/123 kB 47%]                                589 kB/s 12s54% [Waiting for headers]                                          589 kB/s 11s                                                                               Get:14 http://archive.ubuntu.com/ubuntu bionic/main amd64 libksba8 amd64 1.3.5-2 [92.6 kB]
-I, [2019-04-17T00:08:07.991012 #22258]  INFO -- default-ubuntu-1804: 54% [14 libksba8 65.5 kB/92.6 kB 71%]                              589 kB/s 11s55% [Waiting for headers]                                          589 kB/s 11s                                                                               Get:15 http://archive.ubuntu.com/ubuntu bionic/main amd64 libnpth0 amd64 1.5-3 [7668 B]
-I, [2019-04-17T00:08:08.004910 #22258]  INFO -- default-ubuntu-1804: 55% [15 libnpth0 1131 B/7668 B 15%]                                589 kB/s 11s56% [Waiting for headers]                                          589 kB/s 11s                                                                               Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 dirmngr amd64 2.2.4-1ubuntu1.2 [316 kB]
-I, [2019-04-17T00:08:08.477981 #22258]  INFO -- default-ubuntu-1804: 56% [16 dirmngr 4772 B/316 kB 2%]                                  589 kB/s 11s58% [Working]                                                      589 kB/s 11s                                                                               Get:17 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcurl3-gnutls amd64 7.58.0-2ubuntu3.6 [212 kB]
-I, [2019-04-17T00:08:08.856077 #22258]  INFO -- default-ubuntu-1804: 58% [17 libcurl3-gnutls 3553 B/212 kB 2%]                          589 kB/s 11s60% [Waiting for headers]                                          589 kB/s 10s                                                                               Get:18 http://archive.ubuntu.com/ubuntu bionic/main amd64 liberror-perl all 0.17025-1 [22.8 kB]
-I, [2019-04-17T00:08:08.897634 #22258]  INFO -- default-ubuntu-1804: 60% [18 liberror-perl 892 B/22.8 kB 4%]                            589 kB/s 10s60% [Waiting for headers]                                          589 kB/s 10s                                                                               Get:19 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 git-man all 1:2.17.1-1ubuntu0.4 [803 kB]
-I, [2019-04-17T00:08:10.237191 #22258]  INFO -- default-ubuntu-1804: 60% [19 git-man 965 B/803 kB 0%]                                   589 kB/s 10s62% [19 git-man 426 kB/803 kB 53%]                                 589 kB/s 10s64% [19 git-man 687 kB/803 kB 86%]                                  589 kB/s 9s65% [Waiting for headers]                                          485 kB/s 11s                                                                               Get:20 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 git amd64 1:2.17.1-1ubuntu0.4 [3907 kB]
-I, [2019-04-17T00:08:17.729992 #22258]  INFO -- default-ubuntu-1804: 65% [20 git 51.2 kB/3907 kB 1%]                                    485 kB/s 11s66% [20 git 291 kB/3907 kB 7%]                                     485 kB/s 10s68% [20 git 539 kB/3907 kB 14%]                                    485 kB/s 10s69% [20 git 712 kB/3907 kB 18%]                                     485 kB/s 9s71% [20 git 1134 kB/3907 kB 29%]                                    485 kB/s 9s72% [20 git 1447 kB/3907 kB 37%]                                    485 kB/s 8s73% [20 git 1664 kB/3907 kB 43%]                                    485 kB/s 8s74% [20 git 1868 kB/3907 kB 48%]                                    485 kB/s 7s77% [20 git 2331 kB/3907 kB 60%]                                    485 kB/s 6s78% [20 git 2570 kB/3907 kB 66%]                                    485 kB/s 6s80% [20 git 2947 kB/3907 kB 75%]                                    485 kB/s 5s81% [20 git 3134 kB/3907 kB 80%]                                    485 kB/s 4s81% [20 git 3300 kB/3907 kB 84%]                                    549 kB/s 4s82% [20 git 3484 kB/3907 kB 89%]                                    549 kB/s 3s83% [20 git 3695 kB/3907 kB 95%]                                    549 kB/s 3s85% [Waiting for headers]                                           549 kB/s 3s                                                                               Get:21 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gnupg-l10n all 2.2.4-1ubuntu1.2 [49.6 kB]
-I, [2019-04-17T00:08:18.035889 #22258]  INFO -- default-ubuntu-1804: 85% [21 gnupg-l10n 1007 B/49.6 kB 2%]                               549 kB/s 2s86% [Working]                                                       549 kB/s 2s                                                                               Get:22 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gnupg-utils amd64 2.2.4-1ubuntu1.2 [127 kB]
-I, [2019-04-17T00:08:18.300095 #22258]  INFO -- default-ubuntu-1804: 86% [22 gnupg-utils 1005 B/127 kB 1%]                               549 kB/s 2s87% [Working]                                                       549 kB/s 2s                                                                               Get:23 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gpg amd64 2.2.4-1ubuntu1.2 [467 kB]
-I, [2019-04-17T00:08:19.163225 #22258]  INFO -- default-ubuntu-1804: 87% [23 gpg 1005 B/467 kB 0%]                                       549 kB/s 2s89% [23 gpg 353 kB/467 kB 76%]                                      549 kB/s 2s90% [Working]                                                       549 kB/s 1s                                                                               Get:24 http://archive.ubuntu.com/ubuntu bionic/main amd64 pinentry-curses amd64 1.1.0-1 [35.8 kB]
-I, [2019-04-17T00:08:19.300009 #22258]  INFO -- default-ubuntu-1804: 90% [24 pinentry-curses 1007 B/35.8 kB 3%]                          549 kB/s 1s91% [Working]                                                       549 kB/s 1s                                                                               Get:25 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gpg-agent amd64 2.2.4-1ubuntu1.2 [227 kB]
-I, [2019-04-17T00:08:19.760176 #22258]  INFO -- default-ubuntu-1804: 91% [25 gpg-agent 1005 B/227 kB 0%]                                 549 kB/s 1s93% [Working]                                                       549 kB/s 1s                                                                               Get:26 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gpg-wks-client amd64 2.2.4-1ubuntu1.2 [91.9 kB]
-I, [2019-04-17T00:08:19.988834 #22258]  INFO -- default-ubuntu-1804: 93% [26 gpg-wks-client 1006 B/91.9 kB 1%]                           549 kB/s 1s94% [Working]                                                       549 kB/s 1s                                                                               Get:27 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gpg-wks-server amd64 2.2.4-1ubuntu1.2 [84.9 kB]
-I, [2019-04-17T00:08:20.203946 #22258]  INFO -- default-ubuntu-1804: 94% [27 gpg-wks-server 1006 B/84.9 kB 1%]                           549 kB/s 1s95% [Working]                                                       549 kB/s 1s                                                                               Get:28 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gpgsm amd64 2.2.4-1ubuntu1.2 [215 kB]
-I, [2019-04-17T00:08:20.566914 #22258]  INFO -- default-ubuntu-1804: 95% [28 gpgsm 1005 B/215 kB 0%]                                     549 kB/s 1s97% [Working]                                                       549 kB/s 0s                                                                               Get:29 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gnupg amd64 2.2.4-1ubuntu1.2 [249 kB]
-I, [2019-04-17T00:08:21.199042 #22258]  INFO -- default-ubuntu-1804: 97% [29 gnupg 2293 B/249 kB 1%]                                     549 kB/s 0s98% [29 gnupg 197 kB/249 kB 79%]                                    549 kB/s 0s99% [Working]                                                       549 kB/s 0s                                                                               Get:30 http://archive.ubuntu.com/ubuntu bionic/main amd64 patch amd64 2.7.6-2ubuntu1 [102 kB]
-I, [2019-04-17T00:08:21.319223 #22258]  INFO -- default-ubuntu-1804: 99% [30 patch 1005 B/102 kB 1%]                                     549 kB/s 0s100% [Working]                                                      549 kB/s 0s                                                                               Fetched 16.0 MB in 30s (538 kB/s)
-I, [2019-04-17T00:08:21.393503 #22258]  INFO -- default-ubuntu-1804: perl: warning: Setting locale failed.
-I, [2019-04-17T00:08:21.393564 #22258]  INFO -- default-ubuntu-1804: perl: warning: Please check that your locale settings:
-I, [2019-04-17T00:08:21.393587 #22258]  INFO -- default-ubuntu-1804: 	LANGUAGE = (unset),
-I, [2019-04-17T00:08:21.393603 #22258]  INFO -- default-ubuntu-1804: 	LC_ALL = (unset),
-I, [2019-04-17T00:08:21.393618 #22258]  INFO -- default-ubuntu-1804: 	LC_TIME = "en_US.UTF-8",
-I, [2019-04-17T00:08:21.393631 #22258]  INFO -- default-ubuntu-1804: 	LC_MONETARY = "en_US.UTF-8",
-I, [2019-04-17T00:08:21.393645 #22258]  INFO -- default-ubuntu-1804: 	LC_ADDRESS = "en_US.UTF-8",
-I, [2019-04-17T00:08:21.393658 #22258]  INFO -- default-ubuntu-1804: 	LC_TELEPHONE = "en_US.UTF-8",
-I, [2019-04-17T00:08:21.393671 #22258]  INFO -- default-ubuntu-1804: 	LC_NAME = "en_US.UTF-8",
-I, [2019-04-17T00:08:21.393685 #22258]  INFO -- default-ubuntu-1804: 	LC_MEASUREMENT = "en_US.UTF-8",
-I, [2019-04-17T00:08:21.393698 #22258]  INFO -- default-ubuntu-1804: 	LC_IDENTIFICATION = "en_US.UTF-8",
-I, [2019-04-17T00:08:21.393711 #22258]  INFO -- default-ubuntu-1804: 	LC_NUMERIC = "en_US.UTF-8",
-I, [2019-04-17T00:08:21.393725 #22258]  INFO -- default-ubuntu-1804: 	LC_PAPER = "en_US.UTF-8",
-I, [2019-04-17T00:08:21.393749 #22258]  INFO -- default-ubuntu-1804: 	LANG = "en_US.UTF-8"
-I, [2019-04-17T00:08:21.393764 #22258]  INFO -- default-ubuntu-1804:     are supported and installed on your system.
-I, [2019-04-17T00:08:21.393777 #22258]  INFO -- default-ubuntu-1804: perl: warning: Falling back to the standard locale ("C").
-I, [2019-04-17T00:08:21.463205 #22258]  INFO -- default-ubuntu-1804: debconf: delaying package configuration, since apt-utils is not installed
-I, [2019-04-17T00:08:21.552278 #22258]  INFO -- default-ubuntu-1804: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 10160 files and directories currently installed.)
-I, [2019-04-17T00:08:21.553129 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../libapt-pkg5.0_1.6.10_amd64.deb ...
-I, [2019-04-17T00:08:21.574734 #22258]  INFO -- default-ubuntu-1804: Unpacking libapt-pkg5.0:amd64 (1.6.10) over (1.6.8) ...
-I, [2019-04-17T00:08:21.928033 #22258]  INFO -- default-ubuntu-1804: Setting up libapt-pkg5.0:amd64 (1.6.10) ...
-I, [2019-04-17T00:08:22.009878 #22258]  INFO -- default-ubuntu-1804: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 10160 files and directories currently installed.)
-I, [2019-04-17T00:08:22.010536 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../archives/apt_1.6.10_amd64.deb ...
-I, [2019-04-17T00:08:22.049267 #22258]  INFO -- default-ubuntu-1804: Unpacking apt (1.6.10) over (1.6.8) ...
-I, [2019-04-17T00:08:22.477815 #22258]  INFO -- default-ubuntu-1804: Setting up apt (1.6.10) ...
-I, [2019-04-17T00:08:22.843863 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package perl-modules-5.26.
-I, [2019-04-17T00:08:22.857455 #22258]  INFO -- default-ubuntu-1804: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 10161 files and directories currently installed.)
-I, [2019-04-17T00:08:22.858387 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../00-perl-modules-5.26_5.26.1-6ubuntu0.3_all.deb ...
-I, [2019-04-17T00:08:22.864578 #22258]  INFO -- default-ubuntu-1804: Unpacking perl-modules-5.26 (5.26.1-6ubuntu0.3) ...
-I, [2019-04-17T00:08:23.262360 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libgdbm5:amd64.
-I, [2019-04-17T00:08:23.264871 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../01-libgdbm5_1.14.1-6_amd64.deb ...
-I, [2019-04-17T00:08:23.270942 #22258]  INFO -- default-ubuntu-1804: Unpacking libgdbm5:amd64 (1.14.1-6) ...
-I, [2019-04-17T00:08:23.327865 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libgdbm-compat4:amd64.
-I, [2019-04-17T00:08:23.330602 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../02-libgdbm-compat4_1.14.1-6_amd64.deb ...
-I, [2019-04-17T00:08:23.336231 #22258]  INFO -- default-ubuntu-1804: Unpacking libgdbm-compat4:amd64 (1.14.1-6) ...
-I, [2019-04-17T00:08:23.400723 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libperl5.26:amd64.
-I, [2019-04-17T00:08:23.401896 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../03-libperl5.26_5.26.1-6ubuntu0.3_amd64.deb ...
-I, [2019-04-17T00:08:23.407522 #22258]  INFO -- default-ubuntu-1804: Unpacking libperl5.26:amd64 (5.26.1-6ubuntu0.3) ...
-I, [2019-04-17T00:08:23.829453 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package perl.
-I, [2019-04-17T00:08:23.830573 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../04-perl_5.26.1-6ubuntu0.3_amd64.deb ...
-I, [2019-04-17T00:08:23.840186 #22258]  INFO -- default-ubuntu-1804: Unpacking perl (5.26.1-6ubuntu0.3) ...
-I, [2019-04-17T00:08:23.898057 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libapt-inst2.0:amd64.
-I, [2019-04-17T00:08:23.900892 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../05-libapt-inst2.0_1.6.10_amd64.deb ...
-I, [2019-04-17T00:08:23.906744 #22258]  INFO -- default-ubuntu-1804: Unpacking libapt-inst2.0:amd64 (1.6.10) ...
-I, [2019-04-17T00:08:23.988299 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package apt-utils.
-I, [2019-04-17T00:08:23.990996 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../06-apt-utils_1.6.10_amd64.deb ...
-I, [2019-04-17T00:08:23.996888 #22258]  INFO -- default-ubuntu-1804: Unpacking apt-utils (1.6.10) ...
-I, [2019-04-17T00:08:24.104767 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package less.
-I, [2019-04-17T00:08:24.105984 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../07-less_487-0.1_amd64.deb ...
-I, [2019-04-17T00:08:24.111106 #22258]  INFO -- default-ubuntu-1804: Unpacking less (487-0.1) ...
-I, [2019-04-17T00:08:24.174137 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package netbase.
-I, [2019-04-17T00:08:24.176978 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../08-netbase_5.4_all.deb ...
-I, [2019-04-17T00:08:24.182898 #22258]  INFO -- default-ubuntu-1804: Unpacking netbase (5.4) ...
-I, [2019-04-17T00:08:24.238273 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libassuan0:amd64.
-I, [2019-04-17T00:08:24.240996 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../09-libassuan0_2.5.1-2_amd64.deb ...
-I, [2019-04-17T00:08:24.246952 #22258]  INFO -- default-ubuntu-1804: Unpacking libassuan0:amd64 (2.5.1-2) ...
-I, [2019-04-17T00:08:24.307014 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package gpgconf.
-I, [2019-04-17T00:08:24.308333 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../10-gpgconf_2.2.4-1ubuntu1.2_amd64.deb ...
-I, [2019-04-17T00:08:24.313562 #22258]  INFO -- default-ubuntu-1804: Unpacking gpgconf (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:24.383756 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libksba8:amd64.
-I, [2019-04-17T00:08:24.387064 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../11-libksba8_1.3.5-2_amd64.deb ...
-I, [2019-04-17T00:08:24.392872 #22258]  INFO -- default-ubuntu-1804: Unpacking libksba8:amd64 (1.3.5-2) ...
-I, [2019-04-17T00:08:24.468332 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libnpth0:amd64.
-I, [2019-04-17T00:08:24.470083 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../12-libnpth0_1.5-3_amd64.deb ...
-I, [2019-04-17T00:08:24.475293 #22258]  INFO -- default-ubuntu-1804: Unpacking libnpth0:amd64 (1.5-3) ...
-I, [2019-04-17T00:08:24.533787 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package dirmngr.
-I, [2019-04-17T00:08:24.537346 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../13-dirmngr_2.2.4-1ubuntu1.2_amd64.deb ...
-I, [2019-04-17T00:08:24.572265 #22258]  INFO -- default-ubuntu-1804: Unpacking dirmngr (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:24.668228 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libcurl3-gnutls:amd64.
-I, [2019-04-17T00:08:24.670393 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../14-libcurl3-gnutls_7.58.0-2ubuntu3.6_amd64.deb ...
-I, [2019-04-17T00:08:24.675983 #22258]  INFO -- default-ubuntu-1804: Unpacking libcurl3-gnutls:amd64 (7.58.0-2ubuntu3.6) ...
-I, [2019-04-17T00:08:24.758456 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package liberror-perl.
-I, [2019-04-17T00:08:24.760994 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../15-liberror-perl_0.17025-1_all.deb ...
-I, [2019-04-17T00:08:24.766694 #22258]  INFO -- default-ubuntu-1804: Unpacking liberror-perl (0.17025-1) ...
-I, [2019-04-17T00:08:24.840413 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package git-man.
-I, [2019-04-17T00:08:24.843208 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../16-git-man_1%3a2.17.1-1ubuntu0.4_all.deb ...
-I, [2019-04-17T00:08:24.849296 #22258]  INFO -- default-ubuntu-1804: Unpacking git-man (1:2.17.1-1ubuntu0.4) ...
-I, [2019-04-17T00:08:24.998562 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package git.
-I, [2019-04-17T00:08:25.001066 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../17-git_1%3a2.17.1-1ubuntu0.4_amd64.deb ...
-I, [2019-04-17T00:08:25.048704 #22258]  INFO -- default-ubuntu-1804: Unpacking git (1:2.17.1-1ubuntu0.4) ...
-I, [2019-04-17T00:08:25.526300 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package gnupg-l10n.
-I, [2019-04-17T00:08:25.527864 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../18-gnupg-l10n_2.2.4-1ubuntu1.2_all.deb ...
-I, [2019-04-17T00:08:25.533535 #22258]  INFO -- default-ubuntu-1804: Unpacking gnupg-l10n (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:25.595078 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package gnupg-utils.
-I, [2019-04-17T00:08:25.597926 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../19-gnupg-utils_2.2.4-1ubuntu1.2_amd64.deb ...
-I, [2019-04-17T00:08:25.603717 #22258]  INFO -- default-ubuntu-1804: Unpacking gnupg-utils (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:25.674610 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package gpg.
-I, [2019-04-17T00:08:25.677434 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../20-gpg_2.2.4-1ubuntu1.2_amd64.deb ...
-I, [2019-04-17T00:08:25.682986 #22258]  INFO -- default-ubuntu-1804: Unpacking gpg (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:25.790739 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package pinentry-curses.
-I, [2019-04-17T00:08:25.793508 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../21-pinentry-curses_1.1.0-1_amd64.deb ...
-I, [2019-04-17T00:08:25.799524 #22258]  INFO -- default-ubuntu-1804: Unpacking pinentry-curses (1.1.0-1) ...
-I, [2019-04-17T00:08:25.879914 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package gpg-agent.
-I, [2019-04-17T00:08:25.882884 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../22-gpg-agent_2.2.4-1ubuntu1.2_amd64.deb ...
-I, [2019-04-17T00:08:25.888605 #22258]  INFO -- default-ubuntu-1804: Unpacking gpg-agent (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:25.971714 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package gpg-wks-client.
-I, [2019-04-17T00:08:25.974932 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../23-gpg-wks-client_2.2.4-1ubuntu1.2_amd64.deb ...
-I, [2019-04-17T00:08:25.980481 #22258]  INFO -- default-ubuntu-1804: Unpacking gpg-wks-client (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:26.054300 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package gpg-wks-server.
-I, [2019-04-17T00:08:26.057140 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../24-gpg-wks-server_2.2.4-1ubuntu1.2_amd64.deb ...
-I, [2019-04-17T00:08:26.062920 #22258]  INFO -- default-ubuntu-1804: Unpacking gpg-wks-server (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:26.130926 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package gpgsm.
-I, [2019-04-17T00:08:26.133829 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../25-gpgsm_2.2.4-1ubuntu1.2_amd64.deb ...
-I, [2019-04-17T00:08:26.139652 #22258]  INFO -- default-ubuntu-1804: Unpacking gpgsm (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:26.223557 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package gnupg.
-I, [2019-04-17T00:08:26.226437 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../26-gnupg_2.2.4-1ubuntu1.2_amd64.deb ...
-I, [2019-04-17T00:08:26.232060 #22258]  INFO -- default-ubuntu-1804: Unpacking gnupg (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:26.299223 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package patch.
-I, [2019-04-17T00:08:26.300736 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../27-patch_2.7.6-2ubuntu1_amd64.deb ...
-I, [2019-04-17T00:08:26.306722 #22258]  INFO -- default-ubuntu-1804: Unpacking patch (2.7.6-2ubuntu1) ...
-I, [2019-04-17T00:08:26.385199 #22258]  INFO -- default-ubuntu-1804: Setting up libnpth0:amd64 (1.5-3) ...
-I, [2019-04-17T00:08:26.401668 #22258]  INFO -- default-ubuntu-1804: Setting up libapt-inst2.0:amd64 (1.6.10) ...
-I, [2019-04-17T00:08:26.417267 #22258]  INFO -- default-ubuntu-1804: Setting up git-man (1:2.17.1-1ubuntu0.4) ...
-I, [2019-04-17T00:08:26.451196 #22258]  INFO -- default-ubuntu-1804: Setting up less (487-0.1) ...
-I, [2019-04-17T00:08:26.572649 #22258]  INFO -- default-ubuntu-1804: debconf: unable to initialize frontend: Dialog
-I, [2019-04-17T00:08:26.572708 #22258]  INFO -- default-ubuntu-1804: debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 76.)
-I, [2019-04-17T00:08:26.572738 #22258]  INFO -- default-ubuntu-1804: debconf: falling back to frontend: Readline
-I, [2019-04-17T00:08:26.599679 #22258]  INFO -- default-ubuntu-1804: Processing triggers for mime-support (3.60ubuntu1) ...
-I, [2019-04-17T00:08:26.628301 #22258]  INFO -- default-ubuntu-1804: Setting up apt-utils (1.6.10) ...
-I, [2019-04-17T00:08:26.645017 #22258]  INFO -- default-ubuntu-1804: Setting up libcurl3-gnutls:amd64 (7.58.0-2ubuntu3.6) ...
-I, [2019-04-17T00:08:26.662178 #22258]  INFO -- default-ubuntu-1804: Setting up libksba8:amd64 (1.3.5-2) ...
-I, [2019-04-17T00:08:26.679546 #22258]  INFO -- default-ubuntu-1804: Setting up perl-modules-5.26 (5.26.1-6ubuntu0.3) ...
-I, [2019-04-17T00:08:26.696191 #22258]  INFO -- default-ubuntu-1804: Setting up libgdbm5:amd64 (1.14.1-6) ...
-I, [2019-04-17T00:08:26.716121 #22258]  INFO -- default-ubuntu-1804: Setting up gnupg-l10n (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:26.733445 #22258]  INFO -- default-ubuntu-1804: Setting up patch (2.7.6-2ubuntu1) ...
-I, [2019-04-17T00:08:26.750763 #22258]  INFO -- default-ubuntu-1804: Processing triggers for libc-bin (2.27-3ubuntu1) ...
-I, [2019-04-17T00:08:26.793539 #22258]  INFO -- default-ubuntu-1804: Setting up libgdbm-compat4:amd64 (1.14.1-6) ...
-I, [2019-04-17T00:08:26.819552 #22258]  INFO -- default-ubuntu-1804: Setting up libassuan0:amd64 (2.5.1-2) ...
-I, [2019-04-17T00:08:26.839764 #22258]  INFO -- default-ubuntu-1804: Setting up netbase (5.4) ...
-I, [2019-04-17T00:08:26.876407 #22258]  INFO -- default-ubuntu-1804: Setting up gpgconf (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:26.893326 #22258]  INFO -- default-ubuntu-1804: Setting up libperl5.26:amd64 (5.26.1-6ubuntu0.3) ...
-I, [2019-04-17T00:08:26.910110 #22258]  INFO -- default-ubuntu-1804: Setting up gpgsm (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:26.927641 #22258]  INFO -- default-ubuntu-1804: Setting up gnupg-utils (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:26.948095 #22258]  INFO -- default-ubuntu-1804: Setting up pinentry-curses (1.1.0-1) ...
-I, [2019-04-17T00:08:26.976215 #22258]  INFO -- default-ubuntu-1804: Setting up dirmngr (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:27.019768 #22258]  INFO -- default-ubuntu-1804: Setting up gpg (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:27.039715 #22258]  INFO -- default-ubuntu-1804: Setting up gpg-agent (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:27.071928 #22258]  INFO -- default-ubuntu-1804: Setting up gpg-wks-server (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:27.089037 #22258]  INFO -- default-ubuntu-1804: Setting up gpg-wks-client (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:27.105657 #22258]  INFO -- default-ubuntu-1804: Setting up perl (5.26.1-6ubuntu0.3) ...
-I, [2019-04-17T00:08:27.143724 #22258]  INFO -- default-ubuntu-1804: Setting up liberror-perl (0.17025-1) ...
-I, [2019-04-17T00:08:27.160371 #22258]  INFO -- default-ubuntu-1804: Setting up gnupg (2.2.4-1ubuntu1.2) ...
-I, [2019-04-17T00:08:27.177393 #22258]  INFO -- default-ubuntu-1804: Setting up git (1:2.17.1-1ubuntu0.4) ...
-I, [2019-04-17T00:08:27.246539 #22258]  INFO -- default-ubuntu-1804: Processing triggers for libc-bin (2.27-3ubuntu1) ...
-I, [2019-04-17T00:08:28.235055 #22258]  INFO -- default-ubuntu-1804: Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 78%Reading package lists... 78%Reading package lists... 79%Reading package lists... 79%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 89%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
-I, [2019-04-17T00:08:28.401052 #22258]  INFO -- default-ubuntu-1804: Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
-I, [2019-04-17T00:08:28.401319 #22258]  INFO -- default-ubuntu-1804: Reading state information... 0%Reading state information... 0%Reading state information... Done
-I, [2019-04-17T00:08:28.527530 #22258]  INFO -- default-ubuntu-1804: The following additional packages will be installed:
-I, [2019-04-17T00:08:28.527947 #22258]  INFO -- default-ubuntu-1804:   cron iso-codes powermgmt-base python-apt-common python3-apt
-I, [2019-04-17T00:08:28.528152 #22258]  INFO -- default-ubuntu-1804:   python3-software-properties unattended-upgrades
-I, [2019-04-17T00:08:28.529194 #22258]  INFO -- default-ubuntu-1804: Suggested packages:
-I, [2019-04-17T00:08:28.529245 #22258]  INFO -- default-ubuntu-1804:   anacron logrotate checksecurity exim4 | postfix | mail-transport-agent
-I, [2019-04-17T00:08:28.529264 #22258]  INFO -- default-ubuntu-1804:   isoquery python3-apt-dbg python-apt-doc bsd-mailx default-mta
-I, [2019-04-17T00:08:28.529280 #22258]  INFO -- default-ubuntu-1804:   | mail-transport-agent needrestart
-I, [2019-04-17T00:08:28.551139 #22258]  INFO -- default-ubuntu-1804: The following NEW packages will be installed:
-I, [2019-04-17T00:08:28.551589 #22258]  INFO -- default-ubuntu-1804:   cron iso-codes powermgmt-base python-apt-common python3-apt
-I, [2019-04-17T00:08:28.551819 #22258]  INFO -- default-ubuntu-1804:   python3-software-properties software-properties-common unattended-upgrades
-I, [2019-04-17T00:08:28.557136 #22258]  INFO -- default-ubuntu-1804: 0 upgraded, 8 newly installed, 0 to remove and 8 not upgraded.
-I, [2019-04-17T00:08:28.557596 #22258]  INFO -- default-ubuntu-1804: Need to get 2879 kB of archives.
-I, [2019-04-17T00:08:28.557640 #22258]  INFO -- default-ubuntu-1804: After this operation, 21.0 MB of additional disk space will be used.
-I, [2019-04-17T00:08:28.815953 #22258]  INFO -- default-ubuntu-1804: 0% [Working]            Get:1 http://archive.ubuntu.com/ubuntu bionic/main amd64 cron amd64 3.0pl1-128.1ubuntu1 [68.8 kB]
-I, [2019-04-17T00:08:29.200429 #22258]  INFO -- default-ubuntu-1804: 0% [1 cron 2294 B/68.8 kB 3%]                             4% [Working]            Get:2 http://archive.ubuntu.com/ubuntu bionic/main amd64 iso-codes all 3.79-1 [2565 kB]
-I, [2019-04-17T00:08:31.294635 #22258]  INFO -- default-ubuntu-1804: 5% [2 iso-codes 3579 B/2565 kB 0%]19% [2 iso-codes 507 kB/2565 kB 20%]38% [2 iso-codes 1207 kB/2565 kB 47%]45% [2 iso-codes 1471 kB/2565 kB 57%]73% [2 iso-codes 2459 kB/2565 kB 96%]                                     78% [Waiting for headers]                         Get:3 http://archive.ubuntu.com/ubuntu bionic/main amd64 powermgmt-base all 1.33 [8660 B]
-I, [2019-04-17T00:08:31.295430 #22258]  INFO -- default-ubuntu-1804: 78% [3 powermgmt-base 8660 B/8660 B 100%]                                         81% [Waiting for headers]                         Get:4 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 python-apt-common all 1.6.3ubuntu1 [16.2 kB]
-I, [2019-04-17T00:08:31.306615 #22258]  INFO -- default-ubuntu-1804: 81% [4 python-apt-common 5070 B/16.2 kB 31%]                                            84% [Waiting for headers]                         Get:5 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 python3-apt amd64 1.6.3ubuntu1 [148 kB]
-I, [2019-04-17T00:08:31.428971 #22258]  INFO -- default-ubuntu-1804: 84% [5 python3-apt 2799 B/148 kB 2%]                                    90% [Working]             Get:6 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 python3-software-properties all 0.96.24.32.7 [22.0 kB]
-I, [2019-04-17T00:08:31.442644 #22258]  INFO -- default-ubuntu-1804: 91% [6 python3-software-properties 9648 B/22.0 kB 44%]                                                      94% [Waiting for headers]                         Get:7 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 software-properties-common all 0.96.24.32.7 [9908 B]
-I, [2019-04-17T00:08:31.454253 #22258]  INFO -- default-ubuntu-1804: 94% [7 software-properties-common 9908 B/9908 B 100%]                                                     96% [Working]             Get:8 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 unattended-upgrades all 1.1ubuntu1.18.04.10 [40.4 kB]
-I, [2019-04-17T00:08:31.481517 #22258]  INFO -- default-ubuntu-1804: 97% [8 unattended-upgrades 12.8 kB/40.4 kB 32%]                                               100% [Working]              Fetched 2879 kB in 3s (987 kB/s)
-I, [2019-04-17T00:08:31.546281 #22258]  INFO -- default-ubuntu-1804: perl: warning: Setting locale failed.
-I, [2019-04-17T00:08:31.546342 #22258]  INFO -- default-ubuntu-1804: perl: warning: Please check that your locale settings:
-I, [2019-04-17T00:08:31.546363 #22258]  INFO -- default-ubuntu-1804: 	LANGUAGE = (unset),
-I, [2019-04-17T00:08:31.546379 #22258]  INFO -- default-ubuntu-1804: 	LC_ALL = (unset),
-I, [2019-04-17T00:08:31.546394 #22258]  INFO -- default-ubuntu-1804: 	LC_TIME = "en_US.UTF-8",
-I, [2019-04-17T00:08:31.546408 #22258]  INFO -- default-ubuntu-1804: 	LC_MONETARY = "en_US.UTF-8",
-I, [2019-04-17T00:08:31.546422 #22258]  INFO -- default-ubuntu-1804: 	LC_ADDRESS = "en_US.UTF-8",
-I, [2019-04-17T00:08:31.546436 #22258]  INFO -- default-ubuntu-1804: 	LC_TELEPHONE = "en_US.UTF-8",
-I, [2019-04-17T00:08:31.546449 #22258]  INFO -- default-ubuntu-1804: 	LC_NAME = "en_US.UTF-8",
-I, [2019-04-17T00:08:31.546463 #22258]  INFO -- default-ubuntu-1804: 	LC_MEASUREMENT = "en_US.UTF-8",
-I, [2019-04-17T00:08:31.546477 #22258]  INFO -- default-ubuntu-1804: 	LC_IDENTIFICATION = "en_US.UTF-8",
-I, [2019-04-17T00:08:31.546491 #22258]  INFO -- default-ubuntu-1804: 	LC_NUMERIC = "en_US.UTF-8",
-I, [2019-04-17T00:08:31.546508 #22258]  INFO -- default-ubuntu-1804: 	LC_PAPER = "en_US.UTF-8",
-I, [2019-04-17T00:08:31.546530 #22258]  INFO -- default-ubuntu-1804: 	LANG = "en_US.UTF-8"
-I, [2019-04-17T00:08:31.546552 #22258]  INFO -- default-ubuntu-1804:     are supported and installed on your system.
-I, [2019-04-17T00:08:31.546576 #22258]  INFO -- default-ubuntu-1804: perl: warning: Falling back to the standard locale ("C").
-I, [2019-04-17T00:08:32.463398 #22258]  INFO -- default-ubuntu-1804: Preconfiguring packages ...
-I, [2019-04-17T00:08:32.548899 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package cron.
-I, [2019-04-17T00:08:32.557363 #22258]  INFO -- default-ubuntu-1804: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 13292 files and directories currently installed.)
-I, [2019-04-17T00:08:32.557989 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../0-cron_3.0pl1-128.1ubuntu1_amd64.deb ...
-I, [2019-04-17T00:08:32.575474 #22258]  INFO -- default-ubuntu-1804: Unpacking cron (3.0pl1-128.1ubuntu1) ...
-I, [2019-04-17T00:08:32.642823 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package iso-codes.
-I, [2019-04-17T00:08:32.645535 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../1-iso-codes_3.79-1_all.deb ...
-I, [2019-04-17T00:08:32.651052 #22258]  INFO -- default-ubuntu-1804: Unpacking iso-codes (3.79-1) ...
-I, [2019-04-17T00:08:33.050041 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package powermgmt-base.
-I, [2019-04-17T00:08:33.052400 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../2-powermgmt-base_1.33_all.deb ...
-I, [2019-04-17T00:08:33.061332 #22258]  INFO -- default-ubuntu-1804: Unpacking powermgmt-base (1.33) ...
-I, [2019-04-17T00:08:33.118077 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-apt-common.
-I, [2019-04-17T00:08:33.120752 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../3-python-apt-common_1.6.3ubuntu1_all.deb ...
-I, [2019-04-17T00:08:33.126910 #22258]  INFO -- default-ubuntu-1804: Unpacking python-apt-common (1.6.3ubuntu1) ...
-I, [2019-04-17T00:08:33.185300 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python3-apt.
-I, [2019-04-17T00:08:33.188085 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../4-python3-apt_1.6.3ubuntu1_amd64.deb ...
-I, [2019-04-17T00:08:33.194039 #22258]  INFO -- default-ubuntu-1804: Unpacking python3-apt (1.6.3ubuntu1) ...
-I, [2019-04-17T00:08:33.270165 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python3-software-properties.
-I, [2019-04-17T00:08:33.273221 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../5-python3-software-properties_0.96.24.32.7_all.deb ...
-I, [2019-04-17T00:08:33.278537 #22258]  INFO -- default-ubuntu-1804: Unpacking python3-software-properties (0.96.24.32.7) ...
-I, [2019-04-17T00:08:33.344033 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package software-properties-common.
-I, [2019-04-17T00:08:33.346956 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../6-software-properties-common_0.96.24.32.7_all.deb ...
-I, [2019-04-17T00:08:33.352546 #22258]  INFO -- default-ubuntu-1804: Unpacking software-properties-common (0.96.24.32.7) ...
-I, [2019-04-17T00:08:33.440919 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package unattended-upgrades.
-I, [2019-04-17T00:08:33.443941 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../7-unattended-upgrades_1.1ubuntu1.18.04.10_all.deb ...
-I, [2019-04-17T00:08:33.449455 #22258]  INFO -- default-ubuntu-1804: Unpacking unattended-upgrades (1.1ubuntu1.18.04.10) ...
-I, [2019-04-17T00:08:33.522449 #22258]  INFO -- default-ubuntu-1804: Setting up python-apt-common (1.6.3ubuntu1) ...
-I, [2019-04-17T00:08:33.539566 #22258]  INFO -- default-ubuntu-1804: Setting up powermgmt-base (1.33) ...
-I, [2019-04-17T00:08:33.559761 #22258]  INFO -- default-ubuntu-1804: Setting up python3-apt (1.6.3ubuntu1) ...
-I, [2019-04-17T00:08:33.757937 #22258]  INFO -- default-ubuntu-1804: Setting up iso-codes (3.79-1) ...
-I, [2019-04-17T00:08:33.775465 #22258]  INFO -- default-ubuntu-1804: Processing triggers for systemd (237-3ubuntu10.19) ...
-I, [2019-04-17T00:08:33.792103 #22258]  INFO -- default-ubuntu-1804: Setting up unattended-upgrades (1.1ubuntu1.18.04.10) ...
-I, [2019-04-17T00:08:33.960596 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:08:33.960657 #22258]  INFO -- default-ubuntu-1804: Creating config file /etc/apt/apt.conf.d/20auto-upgrades with new version
-I, [2019-04-17T00:08:34.022576 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:08:34.022644 #22258]  INFO -- default-ubuntu-1804: Creating config file /etc/apt/apt.conf.d/50unattended-upgrades with new version
-I, [2019-04-17T00:08:34.253804 #22258]  INFO -- default-ubuntu-1804: Created symlink /etc/systemd/system/multi-user.target.wants/unattended-upgrades.service → /lib/systemd/system/unattended-upgrades.service.
-I, [2019-04-17T00:08:34.363769 #22258]  INFO -- default-ubuntu-1804: Setting up python3-software-properties (0.96.24.32.7) ...
-I, [2019-04-17T00:08:34.527640 #22258]  INFO -- default-ubuntu-1804: Processing triggers for dbus (1.12.2-1ubuntu1) ...
-I, [2019-04-17T00:08:34.538382 #22258]  INFO -- default-ubuntu-1804: Setting up cron (3.0pl1-128.1ubuntu1) ...
-I, [2019-04-17T00:08:34.669863 #22258]  INFO -- default-ubuntu-1804: Adding group `crontab' (GID 106) ...
-I, [2019-04-17T00:08:34.692006 #22258]  INFO -- default-ubuntu-1804: Done.
-I, [2019-04-17T00:08:34.859214 #22258]  INFO -- default-ubuntu-1804: Created symlink /etc/systemd/system/multi-user.target.wants/cron.service → /lib/systemd/system/cron.service.
-I, [2019-04-17T00:08:34.866969 #22258]  INFO -- default-ubuntu-1804: update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults
-I, [2019-04-17T00:08:34.871242 #22258]  INFO -- default-ubuntu-1804: invoke-rc.d: could not determine current runlevel
-I, [2019-04-17T00:08:34.874005 #22258]  INFO -- default-ubuntu-1804: invoke-rc.d: policy-rc.d denied execution of start.
-I, [2019-04-17T00:08:34.882350 #22258]  INFO -- default-ubuntu-1804: Setting up software-properties-common (0.96.24.32.7) ...
-I, [2019-04-17T00:08:35.042067 #22258]  INFO -- default-ubuntu-1804: Processing triggers for systemd (237-3ubuntu10.19) ...
-I, [2019-04-17T00:08:35.055447 #22258]  INFO -- default-ubuntu-1804: Processing triggers for dbus (1.12.2-1ubuntu1) ...
-I, [2019-04-17T00:08:35.998285 #22258]  INFO -- default-ubuntu-1804: Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 78%Reading package lists... 78%Reading package lists... 79%Reading package lists... 79%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 91%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
-I, [2019-04-17T00:08:36.161200 #22258]  INFO -- default-ubuntu-1804: Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
-I, [2019-04-17T00:08:36.161425 #22258]  INFO -- default-ubuntu-1804: Reading state information... 0%Reading state information... 0%Reading state information... Done
-I, [2019-04-17T00:08:36.178044 #22258]  INFO -- default-ubuntu-1804: Package python-software-properties is not available, but is referred to by another package.
-I, [2019-04-17T00:08:36.178107 #22258]  INFO -- default-ubuntu-1804: This may mean that the package is missing, has been obsoleted, or
-I, [2019-04-17T00:08:36.178128 #22258]  INFO -- default-ubuntu-1804: is only available from another source
-I, [2019-04-17T00:08:36.178143 #22258]  INFO -- default-ubuntu-1804: However the following packages replace it:
-I, [2019-04-17T00:08:36.178158 #22258]  INFO -- default-ubuntu-1804:   software-properties-common
-I, [2019-04-17T00:08:36.178171 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:08:36.255419 #22258]  INFO -- default-ubuntu-1804: E: Package 'python-software-properties' has no installation candidate
-I, [2019-04-17T00:08:38.506812 #22258]  INFO -- default-ubuntu-1804: 0% [Working]            Hit:1 http://security.ubuntu.com/ubuntu bionic-security InRelease
-I, [2019-04-17T00:08:38.518893 #22258]  INFO -- default-ubuntu-1804: 0% [Waiting for headers] [Waiting for headers]0% [1 InRelease gpgv 88.7 kB] [Waiting for headers] [Waiting for headers]                                                                         Get:2 http://ppa.launchpad.net/ansible/ansible/ubuntu bionic InRelease [15.9 kB]
-I, [2019-04-17T00:08:38.621293 #22258]  INFO -- default-ubuntu-1804: 0% [1 InRelease gpgv 88.7 kB] [Waiting for headers] [2 InRelease 8708 B/15.9 kB                                                                               Hit:3 http://archive.ubuntu.com/ubuntu bionic InRelease
-I, [2019-04-17T00:08:38.797709 #22258]  INFO -- default-ubuntu-1804:                                                                                0% [1 InRelease gpgv 88.7 kB] [2 InRelease 15.9 kB/15.9 kB 100%]                                                                0% [1 InRelease gpgv 88.7 kB] [Waiting for headers]                                                   0% [Waiting for headers]0% [3 InRelease gpgv 242 kB] [Waiting for headers]                                                  Hit:4 http://archive.ubuntu.com/ubuntu bionic-updates InRelease
-I, [2019-04-17T00:08:38.974197 #22258]  INFO -- default-ubuntu-1804:                                                   0% [3 InRelease gpgv 242 kB]                            0% [Waiting for headers]0% [2 InRelease gpgv 15.9 kB] [Waiting for headers]                                                   0% [Waiting for headers]0% [4 InRelease gpgv 88.7 kB] [Waiting for headers]                                                   Hit:5 http://archive.ubuntu.com/ubuntu bionic-backports InRelease
-I, [2019-04-17T00:08:39.173452 #22258]  INFO -- default-ubuntu-1804: 0% [4 InRelease gpgv 88.7 kB] [Connecting to ppa.launchpad.net (91.189.95.83)]                                                                              0% [Connecting to ppa.launchpad.net (91.189.95.83)]0% [5 InRelease gpgv 74.6 kB] [Connecting to ppa.launchpad.net (91.189.95.83)]                                                                              97% [Waiting for headers]                         Get:6 http://ppa.launchpad.net/ansible/ansible/ubuntu bionic/main amd64 Packages [469 B]
-I, [2019-04-17T00:08:39.192062 #22258]  INFO -- default-ubuntu-1804: 99% [6 Packages 469 B/469 B 100%]                                 99% [Working]99% [6 Packages store 0 B]                          100% [Working]              Fetched 16.3 kB in 1s (17.1 kB/s)
-I, [2019-04-17T00:08:40.045599 #22258]  INFO -- default-ubuntu-1804: Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 78%Reading package lists... 78%Reading package lists... 79%Reading package lists... 79%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 91%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
-I, [2019-04-17T00:08:40.379674 #22258]  INFO -- default-ubuntu-1804: 0% [Working]            Hit:1 http://archive.ubuntu.com/ubuntu bionic InRelease
-I, [2019-04-17T00:08:40.380319 #22258]  INFO -- default-ubuntu-1804: 0% [Waiting for headers] [Waiting for headers]                                              Hit:2 http://security.ubuntu.com/ubuntu bionic-security InRelease
-I, [2019-04-17T00:08:40.410007 #22258]  INFO -- default-ubuntu-1804: 0% [Waiting for headers] [Waiting for headers]0% [1 InRelease gpgv 242 kB] [Waiting for headers] [Waiting for headers]                                                                        Hit:3 http://ppa.launchpad.net/ansible/ansible/ubuntu bionic InRelease
-I, [2019-04-17T00:08:40.462940 #22258]  INFO -- default-ubuntu-1804:                                                                         0% [1 InRelease gpgv 242 kB] [Waiting for headers]                                                  Hit:4 http://archive.ubuntu.com/ubuntu bionic-updates InRelease
-I, [2019-04-17T00:08:40.556734 #22258]  INFO -- default-ubuntu-1804:                                                   0% [1 InRelease gpgv 242 kB]                            Hit:5 http://archive.ubuntu.com/ubuntu bionic-backports InRelease
-I, [2019-04-17T00:08:42.130951 #22258]  INFO -- default-ubuntu-1804: 0% [1 InRelease gpgv 242 kB]                            0% [Working]0% [2 InRelease gpgv 88.7 kB]                             0% [Working]0% [3 InRelease gpgv 15.9 kB]                             0% [Working]0% [4 InRelease gpgv 88.7 kB]                             0% [Working]0% [5 InRelease gpgv 74.6 kB]                             20% [Working]             Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 78%Reading package lists... 78%Reading package lists... 79%Reading package lists... 79%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
-I, [2019-04-17T00:08:43.055805 #22258]  INFO -- default-ubuntu-1804: Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 8%Reading package lists... 78%Reading package lists... 78%Reading package lists... 79%Reading package lists... 79%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 85%Reading package lists... 88%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 94%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 97%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
-I, [2019-04-17T00:08:43.219359 #22258]  INFO -- default-ubuntu-1804: Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
-I, [2019-04-17T00:08:43.219598 #22258]  INFO -- default-ubuntu-1804: Reading state information... 0%Reading state information... 0%Reading state information... Done
-I, [2019-04-17T00:08:43.361572 #22258]  INFO -- default-ubuntu-1804: The following additional packages will be installed:
-I, [2019-04-17T00:08:43.361876 #22258]  INFO -- default-ubuntu-1804:   libpython-stdlib libpython2.7-minimal libpython2.7-stdlib libyaml-0-2 python
-I, [2019-04-17T00:08:43.361912 #22258]  INFO -- default-ubuntu-1804:   python-asn1crypto python-cffi-backend python-crypto python-cryptography
-I, [2019-04-17T00:08:43.361932 #22258]  INFO -- default-ubuntu-1804:   python-enum34 python-httplib2 python-idna python-ipaddress python-jinja2
-I, [2019-04-17T00:08:43.361949 #22258]  INFO -- default-ubuntu-1804:   python-markupsafe python-minimal python-paramiko python-pkg-resources
-I, [2019-04-17T00:08:43.361964 #22258]  INFO -- default-ubuntu-1804:   python-pyasn1 python-setuptools python-six python-yaml python2.7
-I, [2019-04-17T00:08:43.362095 #22258]  INFO -- default-ubuntu-1804:   python2.7-minimal sshpass
-I, [2019-04-17T00:08:43.362955 #22258]  INFO -- default-ubuntu-1804: Suggested packages:
-I, [2019-04-17T00:08:43.363021 #22258]  INFO -- default-ubuntu-1804:   python-doc python-tk python-crypto-doc python-cryptography-doc
-I, [2019-04-17T00:08:43.363045 #22258]  INFO -- default-ubuntu-1804:   python-cryptography-vectors python-enum34-doc python-jinja2-doc
-I, [2019-04-17T00:08:43.363062 #22258]  INFO -- default-ubuntu-1804:   python-gssapi python-setuptools-doc python2.7-doc binutils binfmt-support
-I, [2019-04-17T00:08:43.445506 #22258]  INFO -- default-ubuntu-1804: The following NEW packages will be installed:
-I, [2019-04-17T00:08:43.445704 #22258]  INFO -- default-ubuntu-1804:   ansible libpython-stdlib libpython2.7-minimal libpython2.7-stdlib
-I, [2019-04-17T00:08:43.445902 #22258]  INFO -- default-ubuntu-1804:   libyaml-0-2 python python-asn1crypto python-cffi-backend python-crypto
-I, [2019-04-17T00:08:43.445931 #22258]  INFO -- default-ubuntu-1804:   python-cryptography python-enum34 python-httplib2 python-idna
-I, [2019-04-17T00:08:43.445948 #22258]  INFO -- default-ubuntu-1804:   python-ipaddress python-jinja2 python-markupsafe python-minimal
-I, [2019-04-17T00:08:43.445963 #22258]  INFO -- default-ubuntu-1804:   python-paramiko python-pkg-resources python-pyasn1 python-setuptools
-I, [2019-04-17T00:08:43.446113 #22258]  INFO -- default-ubuntu-1804:   python-six python-yaml python2.7 python2.7-minimal sshpass
-I, [2019-04-17T00:08:43.450905 #22258]  INFO -- default-ubuntu-1804: 0 upgraded, 26 newly installed, 0 to remove and 8 not upgraded.
-I, [2019-04-17T00:08:43.450963 #22258]  INFO -- default-ubuntu-1804: Need to get 9536 kB of archives.
-I, [2019-04-17T00:08:43.450998 #22258]  INFO -- default-ubuntu-1804: After this operation, 59.9 MB of additional disk space will be used.
-I, [2019-04-17T00:08:43.718091 #22258]  INFO -- default-ubuntu-1804: 0% [Working]            Get:1 http://ppa.launchpad.net/ansible/ansible/ubuntu bionic/main amd64 ansible all 2.7.10-1ppa~bionic [3943 kB]
-I, [2019-04-17T00:08:43.735510 #22258]  INFO -- default-ubuntu-1804: 0% [Waiting for headers] [1 ansible 1030 B/3943 kB 0%]                                                      Get:2 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpython2.7-minimal amd64 2.7.15~rc1-1ubuntu0.1 [334 kB]
-I, [2019-04-17T00:08:44.885011 #22258]  INFO -- default-ubuntu-1804: 0% [2 libpython2.7-minimal 2293 B/334 kB 1%] [1 ansible 12.6 kB/3943 kB 0%]3% [2 libpython2.7-minimal 140 kB/334 kB 42%] [1 ansible 219 kB/3943 kB 6%]                                                                           7% [1 ansible 447 kB/3943 kB 11%]                                 Get:3 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 python2.7-minimal amd64 2.7.15~rc1-1ubuntu0.1 [1304 kB]
-I, [2019-04-17T00:08:47.580535 #22258]  INFO -- default-ubuntu-1804: 8% [3 python2.7-minimal 1003 B/1304 kB 0%] [1 ansible 542 kB/3943 kB 14%]14% [3 python2.7-minimal 398 kB/1304 kB 30%] [1 ansible 791 kB/3943 kB 20%]18% [3 python2.7-minimal 726 kB/1304 kB 56%] [1 ansible 976 kB/3943 kB 25%]20% [3 python2.7-minimal 886 kB/1304 kB 68%] [1 ansible 1061 kB/3943 kB 27%]21% [3 python2.7-minimal 989 kB/1304 kB 76%] [1 ansible 1097 kB/3943 kB 28%]21% [3 python2.7-minimal 989 kB/1304 kB 76%] [1 ansible 1122 kB/3943 kB 28%]                                                                            25% [Waiting for headers] [1 ansible 1122 kB/3943 kB 28%]                                                         Get:4 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-minimal amd64 2.7.15~rc1-1 [28.1 kB]
-I, [2019-04-17T00:08:47.643516 #22258]  INFO -- default-ubuntu-1804: 25% [4 python-minimal 1034 B/28.1 kB 4%] [1 ansible 1122 kB/3943 kB 28%]                                                                        26% [Waiting for headers] [1 ansible 1122 kB/3943 kB 28%]                                                         Get:5 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpython2.7-stdlib amd64 2.7.15~rc1-1ubuntu0.1 [1912 kB]
-I, [2019-04-17T00:08:51.752828 #22258]  INFO -- default-ubuntu-1804: 26% [5 libpython2.7-stdlib 1017 B/1912 kB 0%] [1 ansible 1122 kB/3943 kB 28%]29% [5 libpython2.7-stdlib 211 kB/1912 kB 11%] [1 ansible 1312 kB/3943 kB 33%]31% [5 libpython2.7-stdlib 395 kB/1912 kB 21%] [1 ansible 1396 kB/3943 kB 35%]34% [5 libpython2.7-stdlib 632 kB/1912 kB 33%] [1 ansible 1486 kB/3943 kB 38%]35% [5 libpython2.7-stdlib 743 kB/1912 kB 39%] [1 ansible 1530 kB/3943 kB 39%]37% [5 libpython2.7-stdlib 906 kB/1912 kB 47%] [1 ansible 1592 kB/3943 kB 40%]38% [5 libpython2.7-stdlib 906 kB/1912 kB 47%] [1 ansible 1692 kB/3943 kB 43%]45% [5 libpython2.7-stdlib 1498 kB/1912 kB 78%] [1 ansible 1936 kB/3943 kB 49%]49% [5 libpython2.7-stdlib 1856 kB/1912 kB 97%] [1 ansible 2094 kB/3943 kB 53%]51% [1 ansible 2094 kB/3943 kB 53%]                                 637 kB/s 6s                                                                               Get:6 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 python2.7 amd64 2.7.15~rc1-1ubuntu0.1 [238 kB]
-I, [2019-04-17T00:08:52.058966 #22258]  INFO -- default-ubuntu-1804: 51% [6 python2.7 1174 B/238 kB 0%] [1 ansible 2094 kB/3943 kB 53%]  637 kB/s 6s55% [Waiting for headers] [1 ansible 2296 kB/3943 kB 58%]           637 kB/s 5s                                                                               Get:7 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpython-stdlib amd64 2.7.15~rc1-1 [7620 B]
-I, [2019-04-17T00:08:52.070749 #22258]  INFO -- default-ubuntu-1804:                                                                                55% [7 libpython-stdlib 4538 B/7620 B 60%] [1 ansible 2299 kB/3943 kB 58%]56% [Waiting for headers] [1 ansible 2305 kB/3943 kB 58%]           637 kB/s 5s                                                                               Get:8 http://archive.ubuntu.com/ubuntu bionic/main amd64 python amd64 2.7.15~rc1-1 [140 kB]
-I, [2019-04-17T00:08:52.643948 #22258]  INFO -- default-ubuntu-1804: 56% [8 python 499 B/140 kB 0%] [1 ansible 2305 kB/3943 kB 58%]      637 kB/s 5s58% [8 python 132 kB/140 kB 94%] [1 ansible 2375 kB/3943 kB 60%]    637 kB/s 5s59% [Waiting for headers] [1 ansible 2390 kB/3943 kB 61%]           637 kB/s 4s                                                                               Get:9 http://archive.ubuntu.com/ubuntu bionic/main amd64 libyaml-0-2 amd64 0.1.7-2ubuntu3 [47.2 kB]
-I, [2019-04-17T00:08:52.760292 #22258]  INFO -- default-ubuntu-1804:                                                                                59% [9 libyaml-0-2 642 B/47.2 kB 1%] [1 ansible 2390 kB/3943 kB 61%]60% [Waiting for headers] [1 ansible 2412 kB/3943 kB 61%]           637 kB/s 4s                                                                               Get:10 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-markupsafe amd64 1.0-1build1 [13.0 kB]
-I, [2019-04-17T00:08:52.801631 #22258]  INFO -- default-ubuntu-1804:                                                                                60% [10 python-markupsafe 827 B/13.0 kB 6%] [1 ansible 2412 kB/3943 kB 61%]61% [Waiting for headers] [1 ansible 2424 kB/3943 kB 61%]           637 kB/s 4s                                                                               Get:11 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-jinja2 all 2.10-1 [94.6 kB]
-I, [2019-04-17T00:08:53.048863 #22258]  INFO -- default-ubuntu-1804:                                                                                61% [11 python-jinja2 2961 B/94.6 kB 3%] [1 ansible 2424 kB/3943 kB 61%]64% [Waiting for headers] [1 ansible 2547 kB/3943 kB 65%]           637 kB/s 4s                                                                               Get:12 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-yaml amd64 3.12-1build2 [115 kB]
-I, [2019-04-17T00:08:53.066271 #22258]  INFO -- default-ubuntu-1804:                                                                                64% [12 python-yaml 65.5 kB/115 kB 57%] [1 ansible 2547 kB/3943 kB 65%]65% [Waiting for headers] [1 ansible 2555 kB/3943 kB 65%]           637 kB/s 4s                                                                               Get:13 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-asn1crypto all 0.24.0-1 [72.7 kB]
-I, [2019-04-17T00:08:53.146534 #22258]  INFO -- default-ubuntu-1804:                                                                                65% [13 python-asn1crypto 6288 B/72.7 kB 9%] [1 ansible 2555 kB/3943 kB 65%]67% [Waiting for headers] [1 ansible 2614 kB/3943 kB 66%]           637 kB/s 4s                                                                               Get:14 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-cffi-backend amd64 1.11.5-1 [63.4 kB]
-I, [2019-04-17T00:08:53.254373 #22258]  INFO -- default-ubuntu-1804:                                                                                67% [14 python-cffi-backend 2859 B/63.4 kB 5%] [1 ansible 2614 kB/3943 kB 66%]69% [Waiting for headers] [1 ansible 2693 kB/3943 kB 68%]           637 kB/s 3s                                                                               Get:15 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-enum34 all 1.1.6-2 [34.8 kB]
-I, [2019-04-17T00:08:53.299384 #22258]  INFO -- default-ubuntu-1804:                                                                                69% [15 python-enum34 8694 B/34.8 kB 25%] [1 ansible 2693 kB/3943 kB 68%]71% [Waiting for headers] [1 ansible 2720 kB/3943 kB 69%]           637 kB/s 3s                                                                               Get:16 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-idna all 2.6-1 [32.4 kB]
-I, [2019-04-17T00:08:53.694235 #22258]  INFO -- default-ubuntu-1804:                                                                                71% [16 python-idna 5781 B/32.4 kB 18%] [1 ansible 2720 kB/3943 kB 69%]72% [Waiting for headers] [1 ansible 2741 kB/3943 kB 69%]           637 kB/s 3s                                                                               Get:17 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-ipaddress all 1.0.17-1 [18.2 kB]
-I, [2019-04-17T00:08:53.845546 #22258]  INFO -- default-ubuntu-1804:                                                                                72% [17 python-ipaddress 2764 B/18.2 kB 15%] [1 ansible 2741 kB/3943 kB 69%]73% [Waiting for headers] [1 ansible 2761 kB/3943 kB 70%]           637 kB/s 3s                                                                               Get:18 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-six all 1.11.0-2 [11.3 kB]
-I, [2019-04-17T00:08:53.864741 #22258]  INFO -- default-ubuntu-1804:                                                                                73% [18 python-six 1045 B/11.3 kB 9%] [1 ansible 2761 kB/3943 kB 70%]74% [Waiting for headers] [1 ansible 2761 kB/3943 kB 70%]           637 kB/s 3s                                                                               Get:19 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 python-cryptography amd64 2.1.4-1ubuntu1.2 [221 kB]
-I, [2019-04-17T00:08:55.215696 #22258]  INFO -- default-ubuntu-1804:                                                                                74% [19 python-cryptography 2354 B/221 kB 1%] [1 ansible 2761 kB/3943 kB 70%]76% [19 python-cryptography 104 kB/221 kB 47%] [1 ansible 2869 kB/3943 kB 73%]77% [19 python-cryptography 111 kB/221 kB 50%] [1 ansible 3037 kB/3943 kB 77%]79% [Waiting for headers] [1 ansible 3078 kB/3943 kB 78%]           637 kB/s 2s                                                                               Get:20 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-pyasn1 all 0.4.2-3 [46.7 kB]
-I, [2019-04-17T00:08:55.495463 #22258]  INFO -- default-ubuntu-1804:                                                                                79% [20 python-pyasn1 1281 B/46.7 kB 3%] [1 ansible 3078 kB/3943 kB 78%]81% [Waiting for headers] [1 ansible 3142 kB/3943 kB 80%]           637 kB/s 2s                                                                               Get:21 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 python-paramiko all 2.0.0-1ubuntu1.2 [110 kB]
-I, [2019-04-17T00:08:55.976539 #22258]  INFO -- default-ubuntu-1804:                                                                                81% [21 python-paramiko 4498 B/110 kB 4%] [1 ansible 3142 kB/3943 kB 80%]83% [Waiting for headers] [1 ansible 3170 kB/3943 kB 80%]           644 kB/s 2s                                                                               Get:22 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 python-httplib2 all 0.9.2+dfsg-1ubuntu0.1 [34.7 kB]
-I, [2019-04-17T00:08:56.214618 #22258]  INFO -- default-ubuntu-1804:                                                                                83% [22 python-httplib2 861 B/34.7 kB 2%] [1 ansible 3170 kB/3943 kB 80%]84% [Waiting for headers] [1 ansible 3181 kB/3943 kB 81%]           644 kB/s 2s                                                                               Get:23 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-crypto amd64 2.6.1-8ubuntu2 [244 kB]
-I, [2019-04-17T00:08:57.812463 #22258]  INFO -- default-ubuntu-1804:                                                                                84% [23 python-crypto 1906 B/244 kB 1%] [1 ansible 3181 kB/3943 kB 81%]85% [23 python-crypto 99.8 kB/244 kB 41%] [1 ansible 3191 kB/3943 kB 81%]85% [23 python-crypto 99.8 kB/244 kB 41%] [1 ansible 3255 kB/3943 kB 83%]86% [23 python-crypto 99.8 kB/244 kB 41%] [1 ansible 3289 kB/3943 kB 83%]88% [Waiting for headers] [1 ansible 3292 kB/3943 kB 83%]           644 kB/s 1s                                                                               Get:24 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-pkg-resources all 39.0.1-2 [128 kB]
-I, [2019-04-17T00:08:57.814010 #22258]  INFO -- default-ubuntu-1804: 88% [24 python-pkg-resources 46.0 kB/128 kB 36%] [1 ansible 3292 kB/3943 kB 83%89% [Waiting for headers] [1 ansible 3292 kB/3943 kB 83%]           644 kB/s 1s                                                                               Get:25 http://archive.ubuntu.com/ubuntu bionic/main amd64 python-setuptools all 39.0.1-2 [329 kB]
-I, [2019-04-17T00:08:58.374176 #22258]  INFO -- default-ubuntu-1804:                                                                                90% [25 python-setuptools 48.9 kB/329 kB 15%] [1 ansible 3292 kB/3943 kB 83%]                                                                             93% [25 python-setuptools 307 kB/329 kB 93%] [1 ansible 3360 kB/3943 kB 85%]93% [Waiting for headers] [1 ansible 3360 kB/3943 kB 85%]           644 kB/s 0s                                                                               Get:26 http://archive.ubuntu.com/ubuntu bionic/universe amd64 sshpass amd64 1.06-1 [10.5 kB]
-I, [2019-04-17T00:08:59.970905 #22258]  INFO -- default-ubuntu-1804:                                                                                93% [26 sshpass 1667 B/10.5 kB 16%] [1 ansible 3360 kB/3943 kB 85%]94% [1 ansible 3369 kB/3943 kB 85%]                                 644 kB/s 0s96% [1 ansible 3546 kB/3943 kB 90%]                                 644 kB/s 0s97% [1 ansible 3705 kB/3943 kB 94%]                                 644 kB/s 0s100% [Working]                                                      644 kB/s 0s                                                                               Fetched 9536 kB in 17s (578 kB/s)
-I, [2019-04-17T00:09:00.032572 #22258]  INFO -- default-ubuntu-1804: perl: warning: Setting locale failed.
-I, [2019-04-17T00:09:00.032634 #22258]  INFO -- default-ubuntu-1804: perl: warning: Please check that your locale settings:
-I, [2019-04-17T00:09:00.032661 #22258]  INFO -- default-ubuntu-1804: 	LANGUAGE = (unset),
-I, [2019-04-17T00:09:00.032679 #22258]  INFO -- default-ubuntu-1804: 	LC_ALL = (unset),
-I, [2019-04-17T00:09:00.032694 #22258]  INFO -- default-ubuntu-1804: 	LC_TIME = "en_US.UTF-8",
-I, [2019-04-17T00:09:00.032708 #22258]  INFO -- default-ubuntu-1804: 	LC_MONETARY = "en_US.UTF-8",
-I, [2019-04-17T00:09:00.032729 #22258]  INFO -- default-ubuntu-1804: 	LC_ADDRESS = "en_US.UTF-8",
-I, [2019-04-17T00:09:00.032744 #22258]  INFO -- default-ubuntu-1804: 	LC_TELEPHONE = "en_US.UTF-8",
-I, [2019-04-17T00:09:00.032757 #22258]  INFO -- default-ubuntu-1804: 	LC_NAME = "en_US.UTF-8",
-I, [2019-04-17T00:09:00.032770 #22258]  INFO -- default-ubuntu-1804: 	LC_MEASUREMENT = "en_US.UTF-8",
-I, [2019-04-17T00:09:00.032783 #22258]  INFO -- default-ubuntu-1804: 	LC_IDENTIFICATION = "en_US.UTF-8",
-I, [2019-04-17T00:09:00.032796 #22258]  INFO -- default-ubuntu-1804: 	LC_NUMERIC = "en_US.UTF-8",
-I, [2019-04-17T00:09:00.032814 #22258]  INFO -- default-ubuntu-1804: 	LC_PAPER = "en_US.UTF-8",
-I, [2019-04-17T00:09:00.032835 #22258]  INFO -- default-ubuntu-1804: 	LANG = "en_US.UTF-8"
-I, [2019-04-17T00:09:00.032869 #22258]  INFO -- default-ubuntu-1804:     are supported and installed on your system.
-I, [2019-04-17T00:09:00.032889 #22258]  INFO -- default-ubuntu-1804: perl: warning: Falling back to the standard locale ("C").
-I, [2019-04-17T00:09:01.031699 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libpython2.7-minimal:amd64.
-I, [2019-04-17T00:09:01.040677 #22258]  INFO -- default-ubuntu-1804: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 14555 files and directories currently installed.)
-I, [2019-04-17T00:09:01.041371 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../0-libpython2.7-minimal_2.7.15~rc1-1ubuntu0.1_amd64.deb ...
-I, [2019-04-17T00:09:01.046623 #22258]  INFO -- default-ubuntu-1804: Unpacking libpython2.7-minimal:amd64 (2.7.15~rc1-1ubuntu0.1) ...
-I, [2019-04-17T00:09:01.139954 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python2.7-minimal.
-I, [2019-04-17T00:09:01.141585 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../1-python2.7-minimal_2.7.15~rc1-1ubuntu0.1_amd64.deb ...
-I, [2019-04-17T00:09:01.149440 #22258]  INFO -- default-ubuntu-1804: Unpacking python2.7-minimal (2.7.15~rc1-1ubuntu0.1) ...
-I, [2019-04-17T00:09:01.320400 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-minimal.
-I, [2019-04-17T00:09:01.323685 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../2-python-minimal_2.7.15~rc1-1_amd64.deb ...
-I, [2019-04-17T00:09:01.330089 #22258]  INFO -- default-ubuntu-1804: Unpacking python-minimal (2.7.15~rc1-1) ...
-I, [2019-04-17T00:09:01.392806 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libpython2.7-stdlib:amd64.
-I, [2019-04-17T00:09:01.395662 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../3-libpython2.7-stdlib_2.7.15~rc1-1ubuntu0.1_amd64.deb ...
-I, [2019-04-17T00:09:01.401101 #22258]  INFO -- default-ubuntu-1804: Unpacking libpython2.7-stdlib:amd64 (2.7.15~rc1-1ubuntu0.1) ...
-I, [2019-04-17T00:09:01.661660 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python2.7.
-I, [2019-04-17T00:09:01.664653 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../4-python2.7_2.7.15~rc1-1ubuntu0.1_amd64.deb ...
-I, [2019-04-17T00:09:01.670364 #22258]  INFO -- default-ubuntu-1804: Unpacking python2.7 (2.7.15~rc1-1ubuntu0.1) ...
-I, [2019-04-17T00:09:01.736403 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libpython-stdlib:amd64.
-I, [2019-04-17T00:09:01.738616 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../5-libpython-stdlib_2.7.15~rc1-1_amd64.deb ...
-I, [2019-04-17T00:09:01.744144 #22258]  INFO -- default-ubuntu-1804: Unpacking libpython-stdlib:amd64 (2.7.15~rc1-1) ...
-I, [2019-04-17T00:09:01.806254 #22258]  INFO -- default-ubuntu-1804: Setting up libpython2.7-minimal:amd64 (2.7.15~rc1-1ubuntu0.1) ...
-I, [2019-04-17T00:09:01.831003 #22258]  INFO -- default-ubuntu-1804: Setting up python2.7-minimal (2.7.15~rc1-1ubuntu0.1) ...
-I, [2019-04-17T00:09:02.101501 #22258]  INFO -- default-ubuntu-1804: Setting up python-minimal (2.7.15~rc1-1) ...
-I, [2019-04-17T00:09:02.226308 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python.
-I, [2019-04-17T00:09:02.245817 #22258]  INFO -- default-ubuntu-1804: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 15303 files and directories currently installed.)
-I, [2019-04-17T00:09:02.247225 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../00-python_2.7.15~rc1-1_amd64.deb ...
-I, [2019-04-17T00:09:02.262228 #22258]  INFO -- default-ubuntu-1804: Unpacking python (2.7.15~rc1-1) ...
-I, [2019-04-17T00:09:02.324079 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package libyaml-0-2:amd64.
-I, [2019-04-17T00:09:02.325543 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../01-libyaml-0-2_0.1.7-2ubuntu3_amd64.deb ...
-I, [2019-04-17T00:09:02.337433 #22258]  INFO -- default-ubuntu-1804: Unpacking libyaml-0-2:amd64 (0.1.7-2ubuntu3) ...
-I, [2019-04-17T00:09:02.407466 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-markupsafe.
-I, [2019-04-17T00:09:02.410521 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../02-python-markupsafe_1.0-1build1_amd64.deb ...
-I, [2019-04-17T00:09:02.416146 #22258]  INFO -- default-ubuntu-1804: Unpacking python-markupsafe (1.0-1build1) ...
-I, [2019-04-17T00:09:02.476229 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-jinja2.
-I, [2019-04-17T00:09:02.479254 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../03-python-jinja2_2.10-1_all.deb ...
-I, [2019-04-17T00:09:02.484845 #22258]  INFO -- default-ubuntu-1804: Unpacking python-jinja2 (2.10-1) ...
-I, [2019-04-17T00:09:02.564497 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-yaml.
-I, [2019-04-17T00:09:02.567622 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../04-python-yaml_3.12-1build2_amd64.deb ...
-I, [2019-04-17T00:09:02.573283 #22258]  INFO -- default-ubuntu-1804: Unpacking python-yaml (3.12-1build2) ...
-I, [2019-04-17T00:09:02.657388 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-asn1crypto.
-I, [2019-04-17T00:09:02.661236 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../05-python-asn1crypto_0.24.0-1_all.deb ...
-I, [2019-04-17T00:09:02.666932 #22258]  INFO -- default-ubuntu-1804: Unpacking python-asn1crypto (0.24.0-1) ...
-I, [2019-04-17T00:09:02.730997 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-cffi-backend.
-I, [2019-04-17T00:09:02.734229 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../06-python-cffi-backend_1.11.5-1_amd64.deb ...
-I, [2019-04-17T00:09:02.739980 #22258]  INFO -- default-ubuntu-1804: Unpacking python-cffi-backend (1.11.5-1) ...
-I, [2019-04-17T00:09:02.815704 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-enum34.
-I, [2019-04-17T00:09:02.818838 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../07-python-enum34_1.1.6-2_all.deb ...
-I, [2019-04-17T00:09:02.824598 #22258]  INFO -- default-ubuntu-1804: Unpacking python-enum34 (1.1.6-2) ...
-I, [2019-04-17T00:09:02.895900 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-idna.
-I, [2019-04-17T00:09:02.898925 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../08-python-idna_2.6-1_all.deb ...
-I, [2019-04-17T00:09:02.904665 #22258]  INFO -- default-ubuntu-1804: Unpacking python-idna (2.6-1) ...
-I, [2019-04-17T00:09:02.970104 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-ipaddress.
-I, [2019-04-17T00:09:02.971318 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../09-python-ipaddress_1.0.17-1_all.deb ...
-I, [2019-04-17T00:09:02.976479 #22258]  INFO -- default-ubuntu-1804: Unpacking python-ipaddress (1.0.17-1) ...
-I, [2019-04-17T00:09:03.017514 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-six.
-I, [2019-04-17T00:09:03.020751 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../10-python-six_1.11.0-2_all.deb ...
-I, [2019-04-17T00:09:03.026374 #22258]  INFO -- default-ubuntu-1804: Unpacking python-six (1.11.0-2) ...
-I, [2019-04-17T00:09:03.085815 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-cryptography.
-I, [2019-04-17T00:09:03.089017 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../11-python-cryptography_2.1.4-1ubuntu1.2_amd64.deb ...
-I, [2019-04-17T00:09:03.094833 #22258]  INFO -- default-ubuntu-1804: Unpacking python-cryptography (2.1.4-1ubuntu1.2) ...
-I, [2019-04-17T00:09:03.203632 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-pyasn1.
-I, [2019-04-17T00:09:03.206829 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../12-python-pyasn1_0.4.2-3_all.deb ...
-I, [2019-04-17T00:09:03.212782 #22258]  INFO -- default-ubuntu-1804: Unpacking python-pyasn1 (0.4.2-3) ...
-I, [2019-04-17T00:09:03.289380 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-paramiko.
-I, [2019-04-17T00:09:03.292551 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../13-python-paramiko_2.0.0-1ubuntu1.2_all.deb ...
-I, [2019-04-17T00:09:03.298452 #22258]  INFO -- default-ubuntu-1804: Unpacking python-paramiko (2.0.0-1ubuntu1.2) ...
-I, [2019-04-17T00:09:03.381718 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-httplib2.
-I, [2019-04-17T00:09:03.384990 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../14-python-httplib2_0.9.2+dfsg-1ubuntu0.1_all.deb ...
-I, [2019-04-17T00:09:03.391008 #22258]  INFO -- default-ubuntu-1804: Unpacking python-httplib2 (0.9.2+dfsg-1ubuntu0.1) ...
-I, [2019-04-17T00:09:03.456372 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-crypto.
-I, [2019-04-17T00:09:03.459635 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../15-python-crypto_2.6.1-8ubuntu2_amd64.deb ...
-I, [2019-04-17T00:09:03.465319 #22258]  INFO -- default-ubuntu-1804: Unpacking python-crypto (2.6.1-8ubuntu2) ...
-I, [2019-04-17T00:09:03.571115 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-pkg-resources.
-I, [2019-04-17T00:09:03.574156 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../16-python-pkg-resources_39.0.1-2_all.deb ...
-I, [2019-04-17T00:09:03.583395 #22258]  INFO -- default-ubuntu-1804: Unpacking python-pkg-resources (39.0.1-2) ...
-I, [2019-04-17T00:09:03.677261 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package python-setuptools.
-I, [2019-04-17T00:09:03.680311 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../17-python-setuptools_39.0.1-2_all.deb ...
-I, [2019-04-17T00:09:03.689673 #22258]  INFO -- default-ubuntu-1804: Unpacking python-setuptools (39.0.1-2) ...
-I, [2019-04-17T00:09:03.785820 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package sshpass.
-I, [2019-04-17T00:09:03.788794 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../18-sshpass_1.06-1_amd64.deb ...
-I, [2019-04-17T00:09:03.794376 #22258]  INFO -- default-ubuntu-1804: Unpacking sshpass (1.06-1) ...
-I, [2019-04-17T00:09:03.871129 #22258]  INFO -- default-ubuntu-1804: Selecting previously unselected package ansible.
-I, [2019-04-17T00:09:03.873430 #22258]  INFO -- default-ubuntu-1804: Preparing to unpack .../19-ansible_2.7.10-1ppa~bionic_all.deb ...
-I, [2019-04-17T00:09:03.878833 #22258]  INFO -- default-ubuntu-1804: Unpacking ansible (2.7.10-1ppa~bionic) ...
-I, [2019-04-17T00:09:04.452843 #22258]  INFO -- default-ubuntu-1804: Processing triggers for mime-support (3.60ubuntu1) ...
-I, [2019-04-17T00:09:04.472867 #22258]  INFO -- default-ubuntu-1804: Setting up libyaml-0-2:amd64 (0.1.7-2ubuntu3) ...
-I, [2019-04-17T00:09:04.489532 #22258]  INFO -- default-ubuntu-1804: Processing triggers for libc-bin (2.27-3ubuntu1) ...
-I, [2019-04-17T00:09:04.515727 #22258]  INFO -- default-ubuntu-1804: Setting up sshpass (1.06-1) ...
-I, [2019-04-17T00:09:04.532670 #22258]  INFO -- default-ubuntu-1804: Setting up libpython2.7-stdlib:amd64 (2.7.15~rc1-1ubuntu0.1) ...
-I, [2019-04-17T00:09:04.549309 #22258]  INFO -- default-ubuntu-1804: Setting up python2.7 (2.7.15~rc1-1ubuntu0.1) ...
-I, [2019-04-17T00:09:05.263229 #22258]  INFO -- default-ubuntu-1804: Setting up libpython-stdlib:amd64 (2.7.15~rc1-1) ...
-I, [2019-04-17T00:09:05.278369 #22258]  INFO -- default-ubuntu-1804: Setting up python (2.7.15~rc1-1) ...
-I, [2019-04-17T00:09:05.306335 #22258]  INFO -- default-ubuntu-1804: Setting up python-idna (2.6-1) ...
-I, [2019-04-17T00:09:05.915555 #22258]  INFO -- default-ubuntu-1804: Setting up python-yaml (3.12-1build2) ...
-I, [2019-04-17T00:09:06.492953 #22258]  INFO -- default-ubuntu-1804: Setting up python-asn1crypto (0.24.0-1) ...
-I, [2019-04-17T00:09:07.103251 #22258]  INFO -- default-ubuntu-1804: Setting up python-crypto (2.6.1-8ubuntu2) ...
-I, [2019-04-17T00:09:07.730194 #22258]  INFO -- default-ubuntu-1804: Setting up python-pyasn1 (0.4.2-3) ...
-I, [2019-04-17T00:09:08.300684 #22258]  INFO -- default-ubuntu-1804: Setting up python-pkg-resources (39.0.1-2) ...
-I, [2019-04-17T00:09:08.903908 #22258]  INFO -- default-ubuntu-1804: Setting up python-markupsafe (1.0-1build1) ...
-I, [2019-04-17T00:09:09.439225 #22258]  INFO -- default-ubuntu-1804: Setting up python-httplib2 (0.9.2+dfsg-1ubuntu0.1) ...
-I, [2019-04-17T00:09:09.989081 #22258]  INFO -- default-ubuntu-1804: Setting up python-cffi-backend (1.11.5-1) ...
-I, [2019-04-17T00:09:10.005034 #22258]  INFO -- default-ubuntu-1804: Setting up python-six (1.11.0-2) ...
-I, [2019-04-17T00:09:10.556788 #22258]  INFO -- default-ubuntu-1804: Setting up python-enum34 (1.1.6-2) ...
-I, [2019-04-17T00:09:11.109686 #22258]  INFO -- default-ubuntu-1804: Setting up python-ipaddress (1.0.17-1) ...
-I, [2019-04-17T00:09:11.646270 #22258]  INFO -- default-ubuntu-1804: Setting up python-setuptools (39.0.1-2) ...
-I, [2019-04-17T00:09:12.282322 #22258]  INFO -- default-ubuntu-1804: Setting up python-jinja2 (2.10-1) ...
-I, [2019-04-17T00:09:12.874959 #22258]  INFO -- default-ubuntu-1804: Setting up python-cryptography (2.1.4-1ubuntu1.2) ...
-I, [2019-04-17T00:09:13.481617 #22258]  INFO -- default-ubuntu-1804: Setting up python-paramiko (2.0.0-1ubuntu1.2) ...
-I, [2019-04-17T00:09:14.083823 #22258]  INFO -- default-ubuntu-1804: Setting up ansible (2.7.10-1ppa~bionic) ...
-I, [2019-04-17T00:09:17.718891 #22258]  INFO -- default-ubuntu-1804: -----> Installing Chef Omnibus to install busser to run tests
-I, [2019-04-17T00:09:17.718954 #22258]  INFO -- default-ubuntu-1804: downloading https://www.chef.io/chef/install.sh
-I, [2019-04-17T00:09:17.718976 #22258]  INFO -- default-ubuntu-1804:   to file /tmp/install.sh
-I, [2019-04-17T00:09:17.719140 #22258]  INFO -- default-ubuntu-1804: trying wget...
-I, [2019-04-17T00:10:33.155185 #22258]  INFO -- default-ubuntu-1804: Transferring files to <default-ubuntu-1804>
-I, [2019-04-17T00:10:36.561912 #22258]  INFO -- default-ubuntu-1804: - downloading role 'apache', owned by geerlingguy
-I, [2019-04-17T00:10:40.356090 #22258]  INFO -- default-ubuntu-1804: - downloading role from https://github.com/geerlingguy/ansible-role-apache/archive/3.0.3.tar.gz
-I, [2019-04-17T00:10:43.786551 #22258]  INFO -- default-ubuntu-1804: - extracting geerlingguy.apache to /tmp/kitchen/roles/geerlingguy.apache
-I, [2019-04-17T00:10:43.790124 #22258]  INFO -- default-ubuntu-1804: - geerlingguy.apache (3.0.3) was installed successfully
-I, [2019-04-17T00:10:44.188110 #22258]  INFO -- default-ubuntu-1804: [0;34mansible-playbook 2.7.10[0m
-I, [2019-04-17T00:10:44.188188 #22258]  INFO -- default-ubuntu-1804: [0;34m  config file = /etc/ansible/ansible.cfg[0m
-I, [2019-04-17T00:10:44.188224 #22258]  INFO -- default-ubuntu-1804: [0;34m  configured module search path = [u'/home/kitchen/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules'][0m
-I, [2019-04-17T00:10:44.188257 #22258]  INFO -- default-ubuntu-1804: [0;34m  ansible python module location = /usr/lib/python2.7/dist-packages/ansible[0m
-I, [2019-04-17T00:10:44.188285 #22258]  INFO -- default-ubuntu-1804: [0;34m  executable location = /usr/bin/ansible-playbook[0m
-I, [2019-04-17T00:10:44.188313 #22258]  INFO -- default-ubuntu-1804: [0;34m  python version = 2.7.15rc1 (default, Nov 12 2018, 14:31:15) [GCC 7.3.0][0m
-I, [2019-04-17T00:10:44.188340 #22258]  INFO -- default-ubuntu-1804: [0;34mUsing /etc/ansible/ansible.cfg as config file[0m
-I, [2019-04-17T00:10:44.197152 #22258]  INFO -- default-ubuntu-1804: [0;34m/tmp/kitchen/hosts did not meet host_list requirements, check plugin documentation if this is unexpected[0m
-I, [2019-04-17T00:10:44.197410 #22258]  INFO -- default-ubuntu-1804: [0;34m/tmp/kitchen/hosts did not meet script requirements, check plugin documentation if this is unexpected[0m
-I, [2019-04-17T00:10:44.426487 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:10:44.426599 #22258]  INFO -- default-ubuntu-1804: PLAYBOOK: default.yml **********************************************************
-I, [2019-04-17T00:10:44.426842 #22258]  INFO -- default-ubuntu-1804: [0;34m1 plays in /tmp/kitchen/default.yml[0m
-I, [2019-04-17T00:10:44.441741 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:10:44.441820 #22258]  INFO -- default-ubuntu-1804: PLAY [test-kitchen] ************************************************************
-I, [2019-04-17T00:10:44.451009 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:10:44.451073 #22258]  INFO -- default-ubuntu-1804: TASK [Gathering Facts] *********************************************************
-I, [2019-04-17T00:10:44.451099 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/default.yml:1[0m
-I, [2019-04-17T00:10:47.992281 #22258]  INFO -- default-ubuntu-1804: [0;32mok: [localhost][0m
-I, [2019-04-17T00:10:47.992833 #22258]  INFO -- default-ubuntu-1804: [0;34mMETA: ran handlers[0m
-I, [2019-04-17T00:10:48.055187 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:10:48.055255 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Include OS-specific variables.] *********************
-I, [2019-04-17T00:10:48.055282 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/main.yml:3[0m
-I, [2019-04-17T00:10:48.074779 #22258]  INFO -- default-ubuntu-1804: [0;32mok: [localhost] => {"ansible_facts": {"__apache_packages": ["apache2", "apache2-utils"], "apache_conf_path": "/etc/apache2", "apache_daemon": "apache2", "apache_daemon_path": "/usr/sbin/", "apache_ports_configuration_items": [{"line": "Listen {{ apache_listen_port }}", "regexp": "^Listen "}], "apache_server_root": "/etc/apache2", "apache_service": "apache2"}, "ansible_included_var_files": ["/tmp/kitchen/roles/geerlingguy.apache/vars/Debian.yml"], "changed": false}[0m
-I, [2019-04-17T00:10:48.136430 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:10:48.136502 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Include variables for Amazon Linux.] ****************
-I, [2019-04-17T00:10:48.136529 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/main.yml:6[0m
-I, [2019-04-17T00:10:48.148941 #22258]  INFO -- default-ubuntu-1804: [0;36mskipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
-I, [2019-04-17T00:10:48.213912 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:10:48.213979 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Define apache_packages.] ****************************
-I, [2019-04-17T00:10:48.214001 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/main.yml:12[0m
-I, [2019-04-17T00:10:48.235301 #22258]  INFO -- default-ubuntu-1804: [0;32mok: [localhost] => {"ansible_facts": {"apache_packages": ["apache2", "apache2-utils"]}, "changed": false}[0m
-I, [2019-04-17T00:10:48.297461 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:10:48.297523 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : include_tasks] **************************************
-I, [2019-04-17T00:10:48.297546 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/main.yml:18[0m
-I, [2019-04-17T00:10:48.389669 #22258]  INFO -- default-ubuntu-1804: [0;36mincluded: /tmp/kitchen/roles/geerlingguy.apache/tasks/setup-Debian.yml for localhost[0m
-I, [2019-04-17T00:10:48.454810 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:10:48.454875 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Update apt cache.] **********************************
-I, [2019-04-17T00:10:48.454897 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/setup-Debian.yml:2[0m
-I, [2019-04-17T00:10:56.449153 #22258]  INFO -- default-ubuntu-1804: [0;32mok: [localhost] => {"cache_update_time": 1555456119, "cache_updated": false, "changed": false}[0m
-I, [2019-04-17T00:10:56.512830 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:10:56.512895 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Ensure Apache is installed on Debian.] **************
-I, [2019-04-17T00:10:56.513057 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/setup-Debian.yml:5[0m
-I, [2019-04-17T00:11:07.755421 #22258]  INFO -- default-ubuntu-1804: [0;33mchanged: [localhost] => {"cache_update_time": 1555456119, "cache_updated": false, "changed": true, "stderr": "", "stderr_lines": [], "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following additional packages will be installed:\n  apache2-bin apache2-data libapr1 libaprutil1 libaprutil1-dbd-sqlite3\n  libaprutil1-ldap liblua5.2-0 ssl-cert\nSuggested packages:\n  www-browser apache2-doc apache2-suexec-pristine | apache2-suexec-custom ufw\n  openssl-blacklist\nThe following NEW packages will be installed:\n  apache2 apache2-bin apache2-data apache2-utils libapr1 libaprutil1\n  libaprutil1-dbd-sqlite3 libaprutil1-ldap liblua5.2-0 ssl-cert\n0 upgraded, 10 newly installed, 0 to remove and 8 not upgraded.\nNeed to get 1730 kB of archives.\nAfter this operation, 6985 kB of additional disk space will be used.\nGet:1 http://archive.ubuntu.com/ubuntu bionic/main amd64 libapr1 amd64 1.6.3-2 [90.9 kB]\nGet:2 http://archive.ubuntu.com/ubuntu bionic/main amd64 libaprutil1 amd64 1.6.1-2 [84.4 kB]\nGet:3 http://archive.ubuntu.com/ubuntu bionic/main amd64 libaprutil1-dbd-sqlite3 amd64 1.6.1-2 [10.6 kB]\nGet:4 http://archive.ubuntu.com/ubuntu bionic/main amd64 libaprutil1-ldap amd64 1.6.1-2 [8764 B]\nGet:5 http://archive.ubuntu.com/ubuntu bionic/main amd64 liblua5.2-0 amd64 5.2.4-1.1build1 [108 kB]\nGet:6 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apache2-bin amd64 2.4.29-1ubuntu4.6 [1072 kB]\nGet:7 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apache2-utils amd64 2.4.29-1ubuntu4.6 [83.5 kB]\nGet:8 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apache2-data all 2.4.29-1ubuntu4.6 [160 kB]\nGet:9 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apache2 amd64 2.4.29-1ubuntu4.6 [95.1 kB]\nGet:10 http://archive.ubuntu.com/ubuntu bionic/main amd64 ssl-cert all 1.0.39 [17.0 kB]\nPreconfiguring packages ...\nFetched 1730 kB in 2s (788 kB/s)\nSelecting previously unselected package libapr1:amd64.\r\n(Reading database ... \r(Reading database ... 5%\r(Reading database ... 10%\r(Reading database ... 15%\r(Reading database ... 20%\r(Reading database ... 25%\r(Reading database ... 30%\r(Reading database ... 35%\r(Reading database ... 40%\r(Reading database ... 45%\r(Reading database ... 50%\r(Reading database ... 55%\r(Reading database ... 60%\r(Reading database ... 65%\r(Reading database ... 70%\r(Reading database ... 75%\r(Reading database ... 80%\r(Reading database ... 85%\r(Reading database ... 90%\r(Reading database ... 95%\r(Reading database ... 100%\r(Reading database ... 34921 files and directories currently installed.)\r\nPreparing to unpack .../0-libapr1_1.6.3-2_amd64.deb ...\r\nUnpacking libapr1:amd64 (1.6.3-2) ...\r\nSelecting previously unselected package libaprutil1:amd64.\r\nPreparing to unpack .../1-libaprutil1_1.6.1-2_amd64.deb ...\r\nUnpacking libaprutil1:amd64 (1.6.1-2) ...\r\nSelecting previously unselected package libaprutil1-dbd-sqlite3:amd64.\r\nPreparing to unpack .../2-libaprutil1-dbd-sqlite3_1.6.1-2_amd64.deb ...\r\nUnpacking libaprutil1-dbd-sqlite3:amd64 (1.6.1-2) ...\r\nSelecting previously unselected package libaprutil1-ldap:amd64.\r\nPreparing to unpack .../3-libaprutil1-ldap_1.6.1-2_amd64.deb ...\r\nUnpacking libaprutil1-ldap:amd64 (1.6.1-2) ...\r\nSelecting previously unselected package liblua5.2-0:amd64.\r\nPreparing to unpack .../4-liblua5.2-0_5.2.4-1.1build1_amd64.deb ...\r\nUnpacking liblua5.2-0:amd64 (5.2.4-1.1build1) ...\r\nSelecting previously unselected package apache2-bin.\r\nPreparing to unpack .../5-apache2-bin_2.4.29-1ubuntu4.6_amd64.deb ...\r\nUnpacking apache2-bin (2.4.29-1ubuntu4.6) ...\r\nSelecting previously unselected package apache2-utils.\r\nPreparing to unpack .../6-apache2-utils_2.4.29-1ubuntu4.6_amd64.deb ...\r\nUnpacking apache2-utils (2.4.29-1ubuntu4.6) ...\r\nSelecting previously unselected package apache2-data.\r\nPreparing to unpack .../7-apache2-data_2.4.29-1ubuntu4.6_all.deb ...\r\nUnpacking apache2-data (2.4.29-1ubuntu4.6) ...\r\nSelecting previously unselected package apache2.\r\nPreparing to unpack .../8-apache2_2.4.29-1ubuntu4.6_amd64.deb ...\r\nUnpacking apache2 (2.4.29-1ubuntu4.6) ...\r\nSelecting previously unselected package ssl-cert.\r\nPreparing to unpack .../9-ssl-cert_1.0.39_all.deb ...\r\nUnpacking ssl-cert (1.0.39) ...\r\nSetting up libapr1:amd64 (1.6.3-2) ...\r\nSetting up apache2-data (2.4.29-1ubuntu4.6) ...\r\nSetting up ssl-cert (1.0.39) ...\r\nProcessing triggers for libc-bin (2.27-3ubuntu1) ...\r\nSetting up libaprutil1:amd64 (1.6.1-2) ...\r\nProcessing triggers for systemd (237-3ubuntu10.19) ...\r\nSetting up liblua5.2-0:amd64 (5.2.4-1.1build1) ...\r\nSetting up libaprutil1-ldap:amd64 (1.6.1-2) ...\r\nSetting up libaprutil1-dbd-sqlite3:amd64 (1.6.1-2) ...\r\nSetting up apache2-utils (2.4.29-1ubuntu4.6) ...\r\nSetting up apache2-bin (2.4.29-1ubuntu4.6) ...\r\nSetting up apache2 (2.4.29-1ubuntu4.6) ...\r\nEnabling module mpm_event.\r\nEnabling module authz_core.\r\nEnabling module authz_host.\r\nEnabling module authn_core.\r\nEnabling module auth_basic.\r\nEnabling module access_compat.\r\nEnabling module authn_file.\r\nEnabling module authz_user.\r\nEnabling module alias.\r\nEnabling module dir.\r\nEnabling module autoindex.\r\nEnabling module env.\r\nEnabling module mime.\r\nEnabling module negotiation.\r\nEnabling module setenvif.\r\nEnabling module filter.\r\nEnabling module deflate.\r\nEnabling module status.\r\nEnabling module reqtimeout.\r\nEnabling conf charset.\r\nEnabling conf localized-error-pages.\r\nEnabling conf other-vhosts-access-log.\r\nEnabling conf security.\r\nEnabling conf serve-cgi-bin.\r\nEnabling site 000-default.\r\nCreated symlink /etc/systemd/system/multi-user.target.wants/apache2.service -> /lib/systemd/system/apache2.service.\r\nCreated symlink /etc/systemd/system/multi-user.target.wants/apache-htcacheclean.service -> /lib/systemd/system/apache-htcacheclean.service.\r\ninvoke-rc.d: could not determine current runlevel\r\ninvoke-rc.d: policy-rc.d denied execution of start.\r\nProcessing triggers for libc-bin (2.27-3ubuntu1) ...\r\nProcessing triggers for systemd (237-3ubuntu10.19) ...\r\n", "stdout_lines": ["Reading package lists...", "Building dependency tree...", "Reading state information...", "The following additional packages will be installed:", "  apache2-bin apache2-data libapr1 libaprutil1 libaprutil1-dbd-sqlite3", "  libaprutil1-ldap liblua5.2-0 ssl-cert", "Suggested packages:", "  www-browser apache2-doc apache2-suexec-pristine | apache2-suexec-custom ufw", "  openssl-blacklist", "The following NEW packages will be installed:", "  apache2 apache2-bin apache2-data apache2-utils libapr1 libaprutil1", "  libaprutil1-dbd-sqlite3 libaprutil1-ldap liblua5.2-0 ssl-cert", "0 upgraded, 10 newly installed, 0 to remove and 8 not upgraded.", "Need to get 1730 kB of archives.", "After this operation, 6985 kB of additional disk space will be used.", "Get:1 http://archive.ubuntu.com/ubuntu bionic/main amd64 libapr1 amd64 1.6.3-2 [90.9 kB]", "Get:2 http://archive.ubuntu.com/ubuntu bionic/main amd64 libaprutil1 amd64 1.6.1-2 [84.4 kB]", "Get:3 http://archive.ubuntu.com/ubuntu bionic/main amd64 libaprutil1-dbd-sqlite3 amd64 1.6.1-2 [10.6 kB]", "Get:4 http://archive.ubuntu.com/ubuntu bionic/main amd64 libaprutil1-ldap amd64 1.6.1-2 [8764 B]", "Get:5 http://archive.ubuntu.com/ubuntu bionic/main amd64 liblua5.2-0 amd64 5.2.4-1.1build1 [108 kB]", "Get:6 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apache2-bin amd64 2.4.29-1ubuntu4.6 [1072 kB]", "Get:7 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apache2-utils amd64 2.4.29-1ubuntu4.6 [83.5 kB]", "Get:8 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apache2-data all 2.4.29-1ubuntu4.6 [160 kB]", "Get:9 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 apache2 amd64 2.4.29-1ubuntu4.6 [95.1 kB]", "Get:10 http://archive.ubuntu.com/ubuntu bionic/main amd64 ssl-cert all 1.0.39 [17.0 kB]", "Preconfiguring packages ...", "Fetched 1730 kB in 2s (788 kB/s)", "Selecting previously unselected package libapr1:amd64.", "(Reading database ... ", "(Reading database ... 5%", "(Reading database ... 10%", "(Reading database ... 15%", "(Reading database ... 20%", "(Reading database ... 25%", "(Reading database ... 30%", "(Reading database ... 35%", "(Reading database ... 40%", "(Reading database ... 45%", "(Reading database ... 50%", "(Reading database ... 55%", "(Reading database ... 60%", "(Reading database ... 65%", "(Reading database ... 70%", "(Reading database ... 75%", "(Reading database ... 80%", "(Reading database ... 85%", "(Reading database ... 90%", "(Reading database ... 95%", "(Reading database ... 100%", "(Reading database ... 34921 files and directories currently installed.)", "Preparing to unpack .../0-libapr1_1.6.3-2_amd64.deb ...", "Unpacking libapr1:amd64 (1.6.3-2) ...", "Selecting previously unselected package libaprutil1:amd64.", "Preparing to unpack .../1-libaprutil1_1.6.1-2_amd64.deb ...", "Unpacking libaprutil1:amd64 (1.6.1-2) ...", "Selecting previously unselected package libaprutil1-dbd-sqlite3:amd64.", "Preparing to unpack .../2-libaprutil1-dbd-sqlite3_1.6.1-2_amd64.deb ...", "Unpacking libaprutil1-dbd-sqlite3:amd64 (1.6.1-2) ...", "Selecting previously unselected package libaprutil1-ldap:amd64.", "Preparing to unpack .../3-libaprutil1-ldap_1.6.1-2_amd64.deb ...", "Unpacking libaprutil1-ldap:amd64 (1.6.1-2) ...", "Selecting previously unselected package liblua5.2-0:amd64.", "Preparing to unpack .../4-liblua5.2-0_5.2.4-1.1build1_amd64.deb ...", "Unpacking liblua5.2-0:amd64 (5.2.4-1.1build1) ...", "Selecting previously unselected package apache2-bin.", "Preparing to unpack .../5-apache2-bin_2.4.29-1ubuntu4.6_amd64.deb ...", "Unpacking apache2-bin (2.4.29-1ubuntu4.6) ...", "Selecting previously unselected package apache2-utils.", "Preparing to unpack .../6-apache2-utils_2.4.29-1ubuntu4.6_amd64.deb ...", "Unpacking apache2-utils (2.4.29-1ubuntu4.6) ...", "Selecting previously unselected package apache2-data.", "Preparing to unpack .../7-apache2-data_2.4.29-1ubuntu4.6_all.deb ...", "Unpacking apache2-data (2.4.29-1ubuntu4.6) ...", "Selecting previously unselected package apache2.", "Preparing to unpack .../8-apache2_2.4.29-1ubuntu4.6_amd64.deb ...", "Unpacking apache2 (2.4.29-1ubuntu4.6) ...", "Selecting previously unselected package ssl-cert.", "Preparing to unpack .../9-ssl-cert_1.0.39_all.deb ...", "Unpacking ssl-cert (1.0.39) ...", "Setting up libapr1:amd64 (1.6.3-2) ...", "Setting up apache2-data (2.4.29-1ubuntu4.6) ...", "Setting up ssl-cert (1.0.39) ...", "Processing triggers for libc-bin (2.27-3ubuntu1) ...", "Setting up libaprutil1:amd64 (1.6.1-2) ...", "Processing triggers for systemd (237-3ubuntu10.19) ...", "Setting up liblua5.2-0:amd64 (5.2.4-1.1build1) ...", "Setting up libaprutil1-ldap:amd64 (1.6.1-2) ...", "Setting up libaprutil1-dbd-sqlite3:amd64 (1.6.1-2) ...", "Setting up apache2-utils (2.4.29-1ubuntu4.6) ...", "Setting up apache2-bin (2.4.29-1ubuntu4.6) ...", "Setting up apache2 (2.4.29-1ubuntu4.6) ...", "Enabling module mpm_event.", "Enabling module authz_core.", "Enabling module authz_host.", "Enabling module authn_core.", "Enabling module auth_basic.", "Enabling module access_compat.", "Enabling module authn_file.", "Enabling module authz_user.", "Enabling module alias.", "Enabling module dir.", "Enabling module autoindex.", "Enabling module env.", "Enabling module mime.", "Enabling module negotiation.", "Enabling module setenvif.", "Enabling module filter.", "Enabling module deflate.", "Enabling module status.", "Enabling module reqtimeout.", "Enabling conf charset.", "Enabling conf localized-error-pages.", "Enabling conf other-vhosts-access-log.", "Enabling conf security.", "Enabling conf serve-cgi-bin.", "Enabling site 000-default.", "Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service -> /lib/systemd/system/apache2.service.", "Created symlink /etc/systemd/system/multi-user.target.wants/apache-htcacheclean.service -> /lib/systemd/system/apache-htcacheclean.service.", "invoke-rc.d: could not determine current runlevel", "invoke-rc.d: policy-rc.d denied execution of start.", "Processing triggers for libc-bin (2.27-3ubuntu1) ...", "Processing triggers for systemd (237-3ubuntu10.19) ..."]}[0m
-I, [2019-04-17T00:11:07.816762 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:07.816823 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Get installed version of Apache.] *******************
-I, [2019-04-17T00:11:07.816979 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/main.yml:21[0m
-I, [2019-04-17T00:11:08.519645 #22258]  INFO -- default-ubuntu-1804: [0;32mok: [localhost] => {"changed": false, "cmd": ["/usr/sbin/apache2", "-v"], "delta": "0:00:00.482133", "end": "2019-04-16 23:11:08.502584", "rc": 0, "start": "2019-04-16 23:11:08.020451", "stderr": "", "stderr_lines": [], "stdout": "Server version: Apache/2.4.29 (Ubuntu)\nServer built:   2019-04-03T13:22:37", "stdout_lines": ["Server version: Apache/2.4.29 (Ubuntu)", "Server built:   2019-04-03T13:22:37"]}[0m
-I, [2019-04-17T00:11:08.586433 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:08.586497 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Create apache_version variable.] ********************
-I, [2019-04-17T00:11:08.586519 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/main.yml:27[0m
-I, [2019-04-17T00:11:08.609150 #22258]  INFO -- default-ubuntu-1804: [0;32mok: [localhost] => {"ansible_facts": {"apache_version": "2.4.29"}, "changed": false}[0m
-I, [2019-04-17T00:11:08.672021 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:08.672082 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Include Apache 2.2 variables.] **********************
-I, [2019-04-17T00:11:08.672104 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/main.yml:31[0m
-I, [2019-04-17T00:11:08.687728 #22258]  INFO -- default-ubuntu-1804: [0;36mskipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
-I, [2019-04-17T00:11:08.751602 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:08.751729 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Include Apache 2.4 variables.] **********************
-I, [2019-04-17T00:11:08.751961 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/main.yml:35[0m
-I, [2019-04-17T00:11:08.774280 #22258]  INFO -- default-ubuntu-1804: [0;32mok: [localhost] => {"ansible_facts": {"apache_default_vhost_filename": "000-default.conf", "apache_ports_configuration_items": [{"line": "Listen {{ apache_listen_port }}", "regexp": "^Listen "}], "apache_vhosts_version": "2.4"}, "ansible_included_var_files": ["/tmp/kitchen/roles/geerlingguy.apache/vars/apache-24.yml"], "changed": false}[0m
-I, [2019-04-17T00:11:08.838030 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:08.838105 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Configure Apache.] **********************************
-I, [2019-04-17T00:11:08.838130 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/main.yml:40[0m
-I, [2019-04-17T00:11:08.919662 #22258]  INFO -- default-ubuntu-1804: [0;36mincluded: /tmp/kitchen/roles/geerlingguy.apache/tasks/configure-Debian.yml for localhost[0m
-I, [2019-04-17T00:11:08.985270 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:08.985331 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Configure Apache.] **********************************
-I, [2019-04-17T00:11:08.985352 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/configure-Debian.yml:2[0m
-I, [2019-04-17T00:11:09.225196 #22258]  INFO -- default-ubuntu-1804: [0;32mok: [localhost] => (item={u'regexp': u'^Listen ', u'line': u'Listen 80'}) => {"backup": "", "changed": false, "item": {"line": "Listen 80", "regexp": "^Listen "}, "msg": ""}[0m
-I, [2019-04-17T00:11:09.289021 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:09.289116 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Enable Apache mods.] ********************************
-I, [2019-04-17T00:11:09.289148 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/configure-Debian.yml:11[0m
-I, [2019-04-17T00:11:09.525229 #22258]  INFO -- default-ubuntu-1804: [0;33mchanged: [localhost] => (item=rewrite.load) => {"changed": true, "dest": "/etc/apache2/mods-enabled/rewrite.load", "gid": 0, "group": "root", "item": "rewrite.load", "mode": "0777", "owner": "root", "size": 40, "src": "/etc/apache2/mods-available/rewrite.load", "state": "link", "uid": 0}[0m
-I, [2019-04-17T00:11:09.621104 #22258]  INFO -- default-ubuntu-1804: [0;33mchanged: [localhost] => (item=ssl.load) => {"changed": true, "dest": "/etc/apache2/mods-enabled/ssl.load", "gid": 0, "group": "root", "item": "ssl.load", "mode": "0777", "owner": "root", "size": 36, "src": "/etc/apache2/mods-available/ssl.load", "state": "link", "uid": 0}[0m
-I, [2019-04-17T00:11:09.623376 #22258]  INFO -- default-ubuntu-1804: [0;34mNOTIFIED HANDLER geerlingguy.apache : restart apache for localhost[0m
-I, [2019-04-17T00:11:09.687423 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:09.687495 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Disable Apache mods.] *******************************
-I, [2019-04-17T00:11:09.687528 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/configure-Debian.yml:19[0m
-I, [2019-04-17T00:11:09.764268 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:09.764331 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Check whether certificates defined in vhosts exist.] ***
-I, [2019-04-17T00:11:09.764483 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/configure-Debian.yml:26[0m
-I, [2019-04-17T00:11:09.884365 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:09.884430 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Add apache vhosts configuration.] *******************
-I, [2019-04-17T00:11:09.884463 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/configure-Debian.yml:31[0m
-I, [2019-04-17T00:11:10.257899 #22258]  INFO -- default-ubuntu-1804: [0;33mchanged: [localhost] => {"changed": true, "checksum": "50464e9eb83c87b5efaadf0f81528eec5491f0e8", "dest": "/etc/apache2/sites-available/vhosts.conf", "gid": 0, "group": "root", "md5sum": "937043e1d18d73cc4386b584a516d80a", "mode": "0644", "owner": "root", "size": 257, "src": "/root/.ansible/tmp/ansible-tmp-1555456269.9-129488613134522/source", "state": "file", "uid": 0}[0m
-I, [2019-04-17T00:11:10.320477 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:10.320544 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Add vhost symlink in sites-enabled.] ****************
-I, [2019-04-17T00:11:10.320567 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/configure-Debian.yml:41[0m
-I, [2019-04-17T00:11:10.440245 #22258]  INFO -- default-ubuntu-1804: [0;33mchanged: [localhost] => {"changed": true, "dest": "/etc/apache2/sites-enabled/vhosts.conf", "gid": 0, "group": "root", "mode": "0777", "owner": "root", "size": 40, "src": "/etc/apache2/sites-available/vhosts.conf", "state": "link", "uid": 0}[0m
-I, [2019-04-17T00:11:10.504304 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:10.504385 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Remove default vhost in sites-enabled.] *************
-I, [2019-04-17T00:11:10.504414 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/configure-Debian.yml:49[0m
-I, [2019-04-17T00:11:10.515649 #22258]  INFO -- default-ubuntu-1804: [0;36mskipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
-I, [2019-04-17T00:11:10.579095 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:10.579167 #22258]  INFO -- default-ubuntu-1804: TASK [geerlingguy.apache : Ensure Apache has selected state and enabled on boot.] ***
-I, [2019-04-17T00:11:10.579193 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/tasks/main.yml:43[0m
-I, [2019-04-17T00:11:12.474609 #22258]  INFO -- default-ubuntu-1804: [0;33mchanged: [localhost] => {"changed": true, "enabled": true, "name": "apache2", "state": "started"}[0m
-I, [2019-04-17T00:11:12.553043 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:12.553104 #22258]  INFO -- default-ubuntu-1804: TASK [my_role : Ensure group "devopsmeetup" exists] ****************************
-I, [2019-04-17T00:11:12.553126 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/my_role/tasks/main.yml:1[0m
-I, [2019-04-17T00:11:13.244955 #22258]  INFO -- default-ubuntu-1804: [0;33mchanged: [localhost] => {"changed": true, "gid": 1001, "name": "devopsmeetup", "state": "present", "system": false}[0m
-I, [2019-04-17T00:11:13.314018 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:13.314082 #22258]  INFO -- default-ubuntu-1804: TASK [my_role : Add the user 'dev' to 'devopsmeetup'] **************************
-I, [2019-04-17T00:11:13.314104 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/my_role/tasks/main.yml:7[0m
-I, [2019-04-17T00:11:14.109522 #22258]  INFO -- default-ubuntu-1804: [0;33mchanged: [localhost] => {"changed": true, "comment": "Dev Ansible", "create_home": true, "group": 1001, "home": "/home/dev", "name": "dev", "shell": "/bin/sh", "state": "present", "system": false, "uid": 1001}[0m
-I, [2019-04-17T00:11:14.192463 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:14.192528 #22258]  INFO -- default-ubuntu-1804: TASK [my_role : template] ******************************************************
-I, [2019-04-17T00:11:14.192550 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/my_role/tasks/main.yml:14[0m
-I, [2019-04-17T00:11:15.329007 #22258]  INFO -- default-ubuntu-1804: [0;33mchanged: [localhost] => {"changed": true, "checksum": "5a9f31eb01d674c0346e457cf00962b00b33e750", "dest": "/etc/apache2/ports.conf", "gid": 0, "group": "root", "md5sum": "82db21556ce33671e0ee033d5d7c596c", "mode": "0644", "owner": "root", "size": 335, "src": "/root/.ansible/tmp/ansible-tmp-1555456274.21-216254877649247/source", "state": "file", "uid": 0}[0m
-I, [2019-04-17T00:11:15.392759 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:15.392831 #22258]  INFO -- default-ubuntu-1804: TASK [my_role : template] ******************************************************
-I, [2019-04-17T00:11:15.393017 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/my_role/tasks/main.yml:19[0m
-I, [2019-04-17T00:11:15.583499 #22258]  INFO -- default-ubuntu-1804: [0;33mchanged: [localhost] => {"changed": true, "checksum": "4b1f0d17a60fc2054960a5d4daa5cf37023441e9", "dest": "/var/www/index.html", "gid": 0, "group": "root", "md5sum": "b0bc9f99d0dcaebdaa97ac128ca6dd76", "mode": "0644", "owner": "root", "size": 234, "src": "/root/.ansible/tmp/ansible-tmp-1555456275.41-197456945956751/source", "state": "file", "uid": 0}[0m
-I, [2019-04-17T00:11:15.585793 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:15.585848 #22258]  INFO -- default-ubuntu-1804: RUNNING HANDLER [geerlingguy.apache : restart apache] **************************
-I, [2019-04-17T00:11:15.585869 #22258]  INFO -- default-ubuntu-1804: [1;30mtask path: /tmp/kitchen/roles/geerlingguy.apache/handlers/main.yml:2[0m
-I, [2019-04-17T00:11:18.473714 #22258]  INFO -- default-ubuntu-1804: [0;33mchanged: [localhost] => {"changed": true, "name": "apache2", "state": "started"}[0m
-I, [2019-04-17T00:11:18.473915 #22258]  INFO -- default-ubuntu-1804: [0;34mMETA: ran handlers[0m
-I, [2019-04-17T00:11:18.474128 #22258]  INFO -- default-ubuntu-1804: [0;34mMETA: ran handlers[0m
-I, [2019-04-17T00:11:18.475179 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:18.475236 #22258]  INFO -- default-ubuntu-1804: PLAY RECAP *********************************************************************
-I, [2019-04-17T00:11:18.475427 #22258]  INFO -- default-ubuntu-1804: [0;33mlocalhost[0m                  : [0;32mok=20  [0m [0;33mchanged=10  [0m unreachable=0    failed=0   
-I, [2019-04-17T00:11:18.475458 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:18.518171 #22258]  INFO -- default-ubuntu-1804: Downloading files from <default-ubuntu-1804>
-I, [2019-04-17T00:11:18.523171 #22258]  INFO -- default-ubuntu-1804: Finished converging <default-ubuntu-1804> (3m34.88s).
-I, [2019-04-17T00:11:18.523348 #22258]  INFO -- default-ubuntu-1804: -----> Setting up <default-ubuntu-1804>...
-I, [2019-04-17T00:11:18.524797 #22258]  INFO -- default-ubuntu-1804: Finished setting up <default-ubuntu-1804> (0m0.00s).
-I, [2019-04-17T00:11:18.524934 #22258]  INFO -- default-ubuntu-1804: -----> Verifying <default-ubuntu-1804>...
-I, [2019-04-17T00:11:18.525499 #22258]  INFO -- default-ubuntu-1804: Preparing files for transfer
-I, [2019-04-17T00:11:18.705251 #22258]  INFO -- default-ubuntu-1804: -----> Installing Busser (busser)
-I, [2019-04-17T00:11:23.094237 #22258]  INFO -- default-ubuntu-1804: Fetching: thor-0.19.0.gemFetching: thor-0.19.0.gem (  3%)Fetching: thor-0.19.0.gem (  6%)Fetching: thor-0.19.0.gem (  9%)Fetching: thor-0.19.0.gem ( 12%)Fetching: thor-0.19.0.gem ( 15%)Fetching: thor-0.19.0.gem ( 18%)Fetching: thor-0.19.0.gem ( 21%)Fetching: thor-0.19.0.gem ( 24%)Fetching: thor-0.19.0.gem ( 27%)Fetching: thor-0.19.0.gem ( 30%)Fetching: thor-0.19.0.gem ( 33%)Fetching: thor-0.19.0.gem ( 35%)Fetching: thor-0.19.0.gem ( 53%)Fetching: thor-0.19.0.gem ( 71%)Fetching: thor-0.19.0.gem ( 89%)Fetching: thor-0.19.0.gem (100%)Fetching: thor-0.19.0.gem (100%)
-I, [2019-04-17T00:11:23.156047 #22258]  INFO -- default-ubuntu-1804: Successfully installed thor-0.19.0
-I, [2019-04-17T00:11:23.460727 #22258]  INFO -- default-ubuntu-1804: Fetching: busser-0.7.1.gemFetching: busser-0.7.1.gem ( 64%)Fetching: busser-0.7.1.gem (100%)Fetching: busser-0.7.1.gem (100%)
-I, [2019-04-17T00:11:23.492131 #22258]  INFO -- default-ubuntu-1804: Successfully installed busser-0.7.1
-I, [2019-04-17T00:11:23.492543 #22258]  INFO -- default-ubuntu-1804: 2 gems installed
-I, [2019-04-17T00:11:23.654648 #22258]  INFO -- default-ubuntu-1804: -----> Installing Busser plugin: busser-serverspec
-I, [2019-04-17T00:11:32.044576 #22258]  INFO -- default-ubuntu-1804: Plugin serverspec installed (version 0.5.10)
-I, [2019-04-17T00:11:32.048830 #22258]  INFO -- default-ubuntu-1804: -----> Running postinstall for serverspec plugin
-I, [2019-04-17T00:11:33.578760 #22258]  INFO -- default-ubuntu-1804: Suite path directory /tmp/verifier/suites does not exist, skipping.
-I, [2019-04-17T00:11:33.582002 #22258]  INFO -- default-ubuntu-1804: Transferring files to <default-ubuntu-1804>
-I, [2019-04-17T00:11:33.981435 #22258]  INFO -- default-ubuntu-1804: -----> Running serverspec test suite
-I, [2019-04-17T00:11:33.985111 #22258]  INFO -- default-ubuntu-1804: -----> Installing Serverspec..
-I, [2019-04-17T00:11:37.350606 #22258]  INFO -- default-ubuntu-1804: Fetching: net-ssh-5.2.0.gemFetching: net-ssh-5.2.0.gem (  2%)Fetching: net-ssh-5.2.0.gem (  4%)Fetching: net-ssh-5.2.0.gem (  6%)Fetching: net-ssh-5.2.0.gem (  8%)Fetching: net-ssh-5.2.0.gem ( 10%)Fetching: net-ssh-5.2.0.gem ( 12%)Fetching: net-ssh-5.2.0.gem ( 14%)Fetching: net-ssh-5.2.0.gem ( 16%)Fetching: net-ssh-5.2.0.gem ( 18%)Fetching: net-ssh-5.2.0.gem ( 21%)Fetching: net-ssh-5.2.0.gem ( 23%)Fetching: net-ssh-5.2.0.gem ( 25%)Fetching: net-ssh-5.2.0.gem ( 37%)Fetching: net-ssh-5.2.0.gem ( 49%)Fetching: net-ssh-5.2.0.gem ( 62%)Fetching: net-ssh-5.2.0.gem ( 74%)Fetching: net-ssh-5.2.0.gem ( 86%)Fetching: net-ssh-5.2.0.gem ( 99%)Fetching: net-ssh-5.2.0.gem (100%)Fetching: net-ssh-5.2.0.gem (100%)
-I, [2019-04-17T00:11:37.663289 #22258]  INFO -- default-ubuntu-1804: Fetching: net-scp-2.0.0.gemFetching: net-scp-2.0.0.gem ( 50%)Fetching: net-scp-2.0.0.gem (100%)Fetching: net-scp-2.0.0.gem (100%)
-I, [2019-04-17T00:11:38.278609 #22258]  INFO -- default-ubuntu-1804: Fetching: net-telnet-0.1.1.gemFetching: net-telnet-0.1.1.gem ( 93%)Fetching: net-telnet-0.1.1.gem (100%)Fetching: net-telnet-0.1.1.gem (100%)
-I, [2019-04-17T00:11:38.530731 #22258]  INFO -- default-ubuntu-1804: Fetching: sfl-2.3.gemFetching: sfl-2.3.gem (100%)Fetching: sfl-2.3.gem (100%)
-I, [2019-04-17T00:11:38.884058 #22258]  INFO -- default-ubuntu-1804: Fetching: specinfra-2.77.0.gemFetching: specinfra-2.77.0.gem ( 18%)Fetching: specinfra-2.77.0.gem ( 37%)Fetching: specinfra-2.77.0.gem ( 56%)Fetching: specinfra-2.77.0.gem ( 75%)Fetching: specinfra-2.77.0.gem ( 94%)Fetching: specinfra-2.77.0.gem (100%)Fetching: specinfra-2.77.0.gem (100%)
-I, [2019-04-17T00:11:39.388572 #22258]  INFO -- default-ubuntu-1804: Fetching: multi_json-1.13.1.gemFetching: multi_json-1.13.1.gem ( 11%)Fetching: multi_json-1.13.1.gem ( 22%)Fetching: multi_json-1.13.1.gem ( 33%)Fetching: multi_json-1.13.1.gem ( 44%)Fetching: multi_json-1.13.1.gem ( 54%)Fetching: multi_json-1.13.1.gem ( 64%)Fetching: multi_json-1.13.1.gem ( 75%)Fetching: multi_json-1.13.1.gem ( 86%)Fetching: multi_json-1.13.1.gem ( 97%)Fetching: multi_json-1.13.1.gem (100%)Fetching: multi_json-1.13.1.gem (100%)
-I, [2019-04-17T00:11:39.673450 #22258]  INFO -- default-ubuntu-1804: Fetching: diff-lcs-1.3.gemFetching: diff-lcs-1.3.gem (  6%)Fetching: diff-lcs-1.3.gem ( 12%)Fetching: diff-lcs-1.3.gem ( 18%)Fetching: diff-lcs-1.3.gem ( 24%)Fetching: diff-lcs-1.3.gem ( 30%)Fetching: diff-lcs-1.3.gem ( 36%)Fetching: diff-lcs-1.3.gem ( 42%)Fetching: diff-lcs-1.3.gem ( 48%)Fetching: diff-lcs-1.3.gem ( 54%)Fetching: diff-lcs-1.3.gem ( 60%)Fetching: diff-lcs-1.3.gem ( 66%)Fetching: diff-lcs-1.3.gem ( 72%)Fetching: diff-lcs-1.3.gem (100%)Fetching: diff-lcs-1.3.gem (100%)
-I, [2019-04-17T00:11:40.055890 #22258]  INFO -- default-ubuntu-1804: Fetching: rspec-expectations-3.8.2.gemFetching: rspec-expectations-3.8.2.gem ( 20%)Fetching: rspec-expectations-3.8.2.gem ( 40%)Fetching: rspec-expectations-3.8.2.gem ( 60%)Fetching: rspec-expectations-3.8.2.gem ( 80%)Fetching: rspec-expectations-3.8.2.gem (100%)Fetching: rspec-expectations-3.8.2.gem (100%)
-I, [2019-04-17T00:11:40.341329 #22258]  INFO -- default-ubuntu-1804: Fetching: rspec-its-1.3.0.gemFetching: rspec-its-1.3.0.gem (100%)Fetching: rspec-its-1.3.0.gem (100%)
-I, [2019-04-17T00:11:40.710190 #22258]  INFO -- default-ubuntu-1804: Fetching: rspec-mocks-3.8.0.gemFetching: rspec-mocks-3.8.0.gem (  4%)Fetching: rspec-mocks-3.8.0.gem (  8%)Fetching: rspec-mocks-3.8.0.gem ( 11%)Fetching: rspec-mocks-3.8.0.gem ( 15%)Fetching: rspec-mocks-3.8.0.gem ( 18%)Fetching: rspec-mocks-3.8.0.gem ( 21%)Fetching: rspec-mocks-3.8.0.gem ( 25%)Fetching: rspec-mocks-3.8.0.gem ( 28%)Fetching: rspec-mocks-3.8.0.gem ( 32%)Fetching: rspec-mocks-3.8.0.gem ( 36%)Fetching: rspec-mocks-3.8.0.gem ( 39%)Fetching: rspec-mocks-3.8.0.gem ( 42%)Fetching: rspec-mocks-3.8.0.gem ( 63%)Fetching: rspec-mocks-3.8.0.gem ( 84%)Fetching: rspec-mocks-3.8.0.gem (100%)Fetching: rspec-mocks-3.8.0.gem (100%)
-I, [2019-04-17T00:11:40.965494 #22258]  INFO -- default-ubuntu-1804: Fetching: rspec-3.8.0.gemFetching: rspec-3.8.0.gem ( 26%)Fetching: rspec-3.8.0.gem ( 52%)Fetching: rspec-3.8.0.gem ( 77%)Fetching: rspec-3.8.0.gem (100%)Fetching: rspec-3.8.0.gem (100%)
-I, [2019-04-17T00:11:41.256093 #22258]  INFO -- default-ubuntu-1804: Fetching: serverspec-2.41.3.gemFetching: serverspec-2.41.3.gem (  5%)Fetching: serverspec-2.41.3.gem ( 12%)Fetching: serverspec-2.41.3.gem ( 19%)Fetching: serverspec-2.41.3.gem ( 26%)Fetching: serverspec-2.41.3.gem ( 33%)Fetching: serverspec-2.41.3.gem ( 40%)Fetching: serverspec-2.41.3.gem ( 47%)Fetching: serverspec-2.41.3.gem ( 54%)Fetching: serverspec-2.41.3.gem ( 61%)Fetching: serverspec-2.41.3.gem ( 68%)Fetching: serverspec-2.41.3.gem ( 75%)Fetching: serverspec-2.41.3.gem ( 82%)Fetching: serverspec-2.41.3.gem ( 89%)Fetching: serverspec-2.41.3.gem ( 96%)Fetching: serverspec-2.41.3.gem (100%)Fetching: serverspec-2.41.3.gem (100%)
-I, [2019-04-17T00:11:41.363675 #22258]  INFO -- default-ubuntu-1804: -----> serverspec installed (version 2.41.3)
-I, [2019-04-17T00:11:41.472259 #22258]  INFO -- default-ubuntu-1804: /opt/chef/embedded/bin/ruby -I/tmp/verifier/suites/serverspec -I/tmp/verifier/gems/gems/rspec-support-3.8.0/lib:/tmp/verifier/gems/gems/rspec-core-3.8.0/lib /opt/chef/embedded/bin/rspec --pattern /tmp/verifier/suites/serverspec/\*\*/\*_spec.rb --color --format documentation --default-path /tmp/verifier/suites/serverspec
-I, [2019-04-17T00:11:41.899129 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:41.899197 #22258]  INFO -- default-ubuntu-1804: User "dev"
-I, [2019-04-17T00:11:41.899388 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:41.900096 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:41.900227 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:41.989520 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:41.989688 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:41.995490 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.000031 #22258]  INFO -- default-ubuntu-1804: [32m  should exist[0m
-I, [2019-04-17T00:11:42.000220 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.001075 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.001268 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.001467 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.001571 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.001697 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.006681 #22258]  INFO -- default-ubuntu-1804: [32m  should belong to group "devopsmeetup"[0m
-I, [2019-04-17T00:11:42.006893 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:42.006922 #22258]  INFO -- default-ubuntu-1804: Service "apache2"
-I, [2019-04-17T00:11:42.007049 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.007403 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.007563 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.007678 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.007784 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.008027 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.014044 #22258]  INFO -- default-ubuntu-1804: [32m  should be enabled[0m
-I, [2019-04-17T00:11:42.014232 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.014723 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.014897 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.014925 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.015057 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.015223 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.020702 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.021338 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.027648 #22258]  INFO -- default-ubuntu-1804: [32m  should be running[0m
-I, [2019-04-17T00:11:42.027815 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:42.027932 #22258]  INFO -- default-ubuntu-1804: File "/var/www/index.html"
-I, [2019-04-17T00:11:42.028119 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.029688 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.029990 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.030102 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.030240 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.030344 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.030486 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.030584 #22258]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
-I, [2019-04-17T00:11:42.033655 #22258]  INFO -- default-ubuntu-1804: [32m  should be file[0m
-I, [2019-04-17T00:11:42.033870 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:42.033900 #22258]  INFO -- default-ubuntu-1804: Finished in 0.1352 seconds (files took 0.33976 seconds to load)
-I, [2019-04-17T00:11:42.033919 #22258]  INFO -- default-ubuntu-1804: [32m5 examples, 0 failures[0m
-I, [2019-04-17T00:11:42.034023 #22258]  INFO -- default-ubuntu-1804: 
-I, [2019-04-17T00:11:42.049149 #22258]  INFO -- default-ubuntu-1804: Finished verifying <default-ubuntu-1804> (0m23.52s).
-I, [2019-04-17T00:11:42.049523 #22258]  INFO -- default-ubuntu-1804: -----> Destroying <default-ubuntu-1804>...
-I, [2019-04-17T00:11:42.100499 #22258]  INFO -- default-ubuntu-1804: UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
-I, [2019-04-17T00:11:42.100733 #22258]  INFO -- default-ubuntu-1804: root                22511               22484               0                   00:07               ?                   00:00:00            /usr/sbin/sshd -D -o UseDNS=no -o UsePAM=no -o PasswordAuthentication=yes -o UsePrivilegeSeparation=no -o PidFile=/tmp/sshd.pid
-I, [2019-04-17T00:11:42.100768 #22258]  INFO -- default-ubuntu-1804: root                22581               22511               0                   00:07               ?                   00:00:00            sshd: kitchen [priv]
-I, [2019-04-17T00:11:42.100792 #22258]  INFO -- default-ubuntu-1804: mohamed             22584               22581               0                   00:07               ?                   00:00:00            sshd: kitchen@notty
-I, [2019-04-17T00:11:42.100814 #22258]  INFO -- default-ubuntu-1804: root                26756               22511               0                   00:11               ?                   00:00:00            /usr/sbin/apache2 -k start
-I, [2019-04-17T00:11:42.100833 #22258]  INFO -- default-ubuntu-1804: www-data            26759               26756               0                   00:11               ?                   00:00:00            /usr/sbin/apache2 -k start
-I, [2019-04-17T00:11:42.100854 #22258]  INFO -- default-ubuntu-1804: www-data            26760               26756               0                   00:11               ?                   00:00:00            /usr/sbin/apache2 -k start
-I, [2019-04-17T00:11:42.622748 #22258]  INFO -- default-ubuntu-1804: abba84b9eb3cc25655a8b79206aa29eaa9dd0e3e33859435daea78e4b46459f3
-I, [2019-04-17T00:11:43.279814 #22258]  INFO -- default-ubuntu-1804: abba84b9eb3cc25655a8b79206aa29eaa9dd0e3e33859435daea78e4b46459f3
-I, [2019-04-17T00:11:43.292720 #22258]  INFO -- default-ubuntu-1804: Finished destroying <default-ubuntu-1804> (0m1.24s).
-I, [2019-04-17T00:11:43.298708 #22258]  INFO -- default-ubuntu-1804: Finished testing <default-ubuntu-1804> (4m1.84s).
+I, [2019-04-18T18:02:37.407535 #11860]  INFO -- default-ubuntu-1804: -----> Setting up <default-ubuntu-1804>...
+I, [2019-04-18T18:02:37.408459 #11860]  INFO -- default-ubuntu-1804: Finished setting up <default-ubuntu-1804> (0m0.00s).
+I, [2019-04-18T18:02:37.408528 #11860]  INFO -- default-ubuntu-1804: -----> Verifying <default-ubuntu-1804>...
+I, [2019-04-18T18:02:37.408824 #11860]  INFO -- default-ubuntu-1804: Preparing files for transfer
+I, [2019-04-18T18:02:37.657072 #11860]  INFO -- default-ubuntu-1804: -----> Installing Busser (busser)
+I, [2019-04-18T18:02:40.124886 #11860]  INFO -- default-ubuntu-1804: Fetching: thor-0.19.0.gemFetching: thor-0.19.0.gem (  3%)Fetching: thor-0.19.0.gem (  6%)Fetching: thor-0.19.0.gem (  9%)Fetching: thor-0.19.0.gem ( 12%)Fetching: thor-0.19.0.gem ( 15%)Fetching: thor-0.19.0.gem ( 18%)Fetching: thor-0.19.0.gem ( 21%)Fetching: thor-0.19.0.gem ( 24%)Fetching: thor-0.19.0.gem ( 27%)Fetching: thor-0.19.0.gem ( 30%)Fetching: thor-0.19.0.gem ( 33%)Fetching: thor-0.19.0.gem ( 35%)Fetching: thor-0.19.0.gem ( 53%)Fetching: thor-0.19.0.gem ( 71%)Fetching: thor-0.19.0.gem ( 89%)Fetching: thor-0.19.0.gem (100%)Fetching: thor-0.19.0.gem (100%)
+I, [2019-04-18T18:02:40.195934 #11860]  INFO -- default-ubuntu-1804: Successfully installed thor-0.19.0
+I, [2019-04-18T18:02:40.299623 #11860]  INFO -- default-ubuntu-1804: Fetching: busser-0.7.1.gemFetching: busser-0.7.1.gem ( 64%)Fetching: busser-0.7.1.gem (100%)Fetching: busser-0.7.1.gem (100%)
+I, [2019-04-18T18:02:40.355076 #11860]  INFO -- default-ubuntu-1804: Successfully installed busser-0.7.1
+I, [2019-04-18T18:02:40.355242 #11860]  INFO -- default-ubuntu-1804: 2 gems installed
+I, [2019-04-18T18:02:40.461979 #11860]  INFO -- default-ubuntu-1804: -----> Installing Busser plugin: busser-serverspec
+I, [2019-04-18T18:02:45.364732 #11860]  INFO -- default-ubuntu-1804: Plugin serverspec installed (version 0.5.10)
+I, [2019-04-18T18:02:45.370850 #11860]  INFO -- default-ubuntu-1804: -----> Running postinstall for serverspec plugin
+I, [2019-04-18T18:02:46.899143 #11860]  INFO -- default-ubuntu-1804: Suite path directory /tmp/verifier/suites does not exist, skipping.
+I, [2019-04-18T18:02:46.902368 #11860]  INFO -- default-ubuntu-1804: Transferring files to <default-ubuntu-1804>
+I, [2019-04-18T18:02:47.244321 #11860]  INFO -- default-ubuntu-1804: -----> Running serverspec test suite
+I, [2019-04-18T18:02:47.247362 #11860]  INFO -- default-ubuntu-1804: -----> Installing Serverspec..
+I, [2019-04-18T18:02:50.335135 #11860]  INFO -- default-ubuntu-1804: Fetching: net-ssh-5.2.0.gemFetching: net-ssh-5.2.0.gem (  2%)Fetching: net-ssh-5.2.0.gem (  4%)Fetching: net-ssh-5.2.0.gem (  6%)Fetching: net-ssh-5.2.0.gem (  8%)Fetching: net-ssh-5.2.0.gem ( 10%)Fetching: net-ssh-5.2.0.gem ( 12%)Fetching: net-ssh-5.2.0.gem ( 14%)Fetching: net-ssh-5.2.0.gem ( 16%)Fetching: net-ssh-5.2.0.gem ( 18%)Fetching: net-ssh-5.2.0.gem ( 21%)Fetching: net-ssh-5.2.0.gem ( 23%)Fetching: net-ssh-5.2.0.gem ( 25%)Fetching: net-ssh-5.2.0.gem ( 37%)Fetching: net-ssh-5.2.0.gem ( 49%)Fetching: net-ssh-5.2.0.gem ( 62%)Fetching: net-ssh-5.2.0.gem ( 74%)Fetching: net-ssh-5.2.0.gem ( 86%)Fetching: net-ssh-5.2.0.gem ( 99%)Fetching: net-ssh-5.2.0.gem (100%)Fetching: net-ssh-5.2.0.gem (100%)
+I, [2019-04-18T18:02:50.614904 #11860]  INFO -- default-ubuntu-1804: Fetching: net-scp-2.0.0.gemFetching: net-scp-2.0.0.gem ( 50%)Fetching: net-scp-2.0.0.gem (100%)Fetching: net-scp-2.0.0.gem (100%)
+I, [2019-04-18T18:02:51.052601 #11860]  INFO -- default-ubuntu-1804: Fetching: net-telnet-0.1.1.gemFetching: net-telnet-0.1.1.gem ( 93%)Fetching: net-telnet-0.1.1.gem (100%)Fetching: net-telnet-0.1.1.gem (100%)
+I, [2019-04-18T18:02:51.291058 #11860]  INFO -- default-ubuntu-1804: Fetching: sfl-2.3.gemFetching: sfl-2.3.gem (100%)Fetching: sfl-2.3.gem (100%)
+I, [2019-04-18T18:02:51.572304 #11860]  INFO -- default-ubuntu-1804: Fetching: specinfra-2.77.0.gemFetching: specinfra-2.77.0.gem ( 18%)Fetching: specinfra-2.77.0.gem ( 37%)Fetching: specinfra-2.77.0.gem ( 56%)Fetching: specinfra-2.77.0.gem ( 75%)Fetching: specinfra-2.77.0.gem ( 94%)Fetching: specinfra-2.77.0.gem (100%)Fetching: specinfra-2.77.0.gem (100%)
+I, [2019-04-18T18:02:51.976642 #11860]  INFO -- default-ubuntu-1804: Fetching: multi_json-1.13.1.gemFetching: multi_json-1.13.1.gem ( 11%)Fetching: multi_json-1.13.1.gem ( 22%)Fetching: multi_json-1.13.1.gem ( 33%)Fetching: multi_json-1.13.1.gem ( 44%)Fetching: multi_json-1.13.1.gem ( 54%)Fetching: multi_json-1.13.1.gem ( 64%)Fetching: multi_json-1.13.1.gem ( 75%)Fetching: multi_json-1.13.1.gem ( 86%)Fetching: multi_json-1.13.1.gem ( 97%)Fetching: multi_json-1.13.1.gem (100%)Fetching: multi_json-1.13.1.gem (100%)
+I, [2019-04-18T18:02:52.189668 #11860]  INFO -- default-ubuntu-1804: Fetching: diff-lcs-1.3.gemFetching: diff-lcs-1.3.gem (  5%)Fetching: diff-lcs-1.3.gem ( 11%)Fetching: diff-lcs-1.3.gem ( 17%)Fetching: diff-lcs-1.3.gem ( 23%)Fetching: diff-lcs-1.3.gem ( 29%)Fetching: diff-lcs-1.3.gem ( 34%)Fetching: diff-lcs-1.3.gem ( 40%)Fetching: diff-lcs-1.3.gem ( 46%)Fetching: diff-lcs-1.3.gem ( 52%)Fetching: diff-lcs-1.3.gem ( 58%)Fetching: diff-lcs-1.3.gem ( 64%)Fetching: diff-lcs-1.3.gem ( 70%)Fetching: diff-lcs-1.3.gem (100%)Fetching: diff-lcs-1.3.gem (100%)
+I, [2019-04-18T18:02:52.531305 #11860]  INFO -- default-ubuntu-1804: Fetching: rspec-expectations-3.8.2.gemFetching: rspec-expectations-3.8.2.gem ( 20%)Fetching: rspec-expectations-3.8.2.gem ( 40%)Fetching: rspec-expectations-3.8.2.gem ( 60%)Fetching: rspec-expectations-3.8.2.gem ( 80%)Fetching: rspec-expectations-3.8.2.gem (100%)Fetching: rspec-expectations-3.8.2.gem (100%)
+I, [2019-04-18T18:02:52.810384 #11860]  INFO -- default-ubuntu-1804: Fetching: rspec-its-1.3.0.gemFetching: rspec-its-1.3.0.gem (100%)Fetching: rspec-its-1.3.0.gem (100%)
+I, [2019-04-18T18:02:53.087324 #11860]  INFO -- default-ubuntu-1804: Fetching: rspec-mocks-3.8.0.gemFetching: rspec-mocks-3.8.0.gem ( 21%)Fetching: rspec-mocks-3.8.0.gem ( 42%)Fetching: rspec-mocks-3.8.0.gem ( 63%)Fetching: rspec-mocks-3.8.0.gem ( 84%)Fetching: rspec-mocks-3.8.0.gem (100%)Fetching: rspec-mocks-3.8.0.gem (100%)
+I, [2019-04-18T18:02:53.341452 #11860]  INFO -- default-ubuntu-1804: Fetching: rspec-3.8.0.gemFetching: rspec-3.8.0.gem ( 26%)Fetching: rspec-3.8.0.gem ( 52%)Fetching: rspec-3.8.0.gem ( 77%)Fetching: rspec-3.8.0.gem (100%)Fetching: rspec-3.8.0.gem (100%)
+I, [2019-04-18T18:02:53.580281 #11860]  INFO -- default-ubuntu-1804: Fetching: serverspec-2.41.3.gemFetching: serverspec-2.41.3.gem (  5%)Fetching: serverspec-2.41.3.gem ( 12%)Fetching: serverspec-2.41.3.gem ( 19%)Fetching: serverspec-2.41.3.gem ( 26%)Fetching: serverspec-2.41.3.gem ( 33%)Fetching: serverspec-2.41.3.gem ( 40%)Fetching: serverspec-2.41.3.gem ( 47%)Fetching: serverspec-2.41.3.gem ( 54%)Fetching: serverspec-2.41.3.gem ( 61%)Fetching: serverspec-2.41.3.gem ( 68%)Fetching: serverspec-2.41.3.gem ( 75%)Fetching: serverspec-2.41.3.gem ( 82%)Fetching: serverspec-2.41.3.gem ( 89%)Fetching: serverspec-2.41.3.gem ( 96%)Fetching: serverspec-2.41.3.gem (100%)Fetching: serverspec-2.41.3.gem (100%)
+I, [2019-04-18T18:02:53.675701 #11860]  INFO -- default-ubuntu-1804: -----> serverspec installed (version 2.41.3)
+I, [2019-04-18T18:02:53.751792 #11860]  INFO -- default-ubuntu-1804: /opt/chef/embedded/bin/ruby -I/tmp/verifier/suites/serverspec -I/tmp/verifier/gems/gems/rspec-support-3.8.0/lib:/tmp/verifier/gems/gems/rspec-core-3.8.0/lib /opt/chef/embedded/bin/rspec --pattern /tmp/verifier/suites/serverspec/\*\*/\*_spec.rb --color --format documentation --default-path /tmp/verifier/suites/serverspec
+I, [2019-04-18T18:02:54.073454 #11860]  INFO -- default-ubuntu-1804: 
+I, [2019-04-18T18:02:54.073521 #11860]  INFO -- default-ubuntu-1804: User "dev"
+I, [2019-04-18T18:02:54.073728 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.074296 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.074452 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.151844 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.151994 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.156616 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.160361 #11860]  INFO -- default-ubuntu-1804: [32m  should exist[0m
+I, [2019-04-18T18:02:54.160553 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.160925 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.161078 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.161238 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.161375 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.161753 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.166180 #11860]  INFO -- default-ubuntu-1804: [32m  should belong to group "devopsmeetup"[0m
+I, [2019-04-18T18:02:54.166365 #11860]  INFO -- default-ubuntu-1804: 
+I, [2019-04-18T18:02:54.166476 #11860]  INFO -- default-ubuntu-1804: Service "apache2"
+I, [2019-04-18T18:02:54.166625 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.166979 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.167086 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.167175 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.167247 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.167416 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.172291 #11860]  INFO -- default-ubuntu-1804: [32m  should be enabled[0m
+I, [2019-04-18T18:02:54.172444 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.172789 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.172818 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.172915 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.173057 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.173208 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.177469 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.177777 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.182698 #11860]  INFO -- default-ubuntu-1804: [32m  should be running[0m
+I, [2019-04-18T18:02:54.182879 #11860]  INFO -- default-ubuntu-1804: 
+I, [2019-04-18T18:02:54.182904 #11860]  INFO -- default-ubuntu-1804: File "/var/www/index.html"
+I, [2019-04-18T18:02:54.183022 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.184494 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.184917 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.185041 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.185256 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.185389 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.185496 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.185595 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.188298 #11860]  INFO -- default-ubuntu-1804: [32m  should be file[0m
+I, [2019-04-18T18:02:54.188492 #11860]  INFO -- default-ubuntu-1804: 
+I, [2019-04-18T18:02:54.188514 #11860]  INFO -- default-ubuntu-1804: File "/var/www/index.html"
+I, [2019-04-18T18:02:54.188628 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.188991 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.189322 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.189440 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.189554 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.189650 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.189735 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.189844 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.192200 #11860]  INFO -- default-ubuntu-1804: [32m  should be file[0m
+I, [2019-04-18T18:02:54.192363 #11860]  INFO -- default-ubuntu-1804: 
+I, [2019-04-18T18:02:54.192388 #11860]  INFO -- default-ubuntu-1804: File "/var/www/index.html"
+I, [2019-04-18T18:02:54.192492 #11860]  INFO -- default-ubuntu-1804:   content
+I, [2019-04-18T18:02:54.192582 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.193347 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.193376 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.193501 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.193621 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.193729 #11860]  INFO -- default-ubuntu-1804: No backend type is specified. Fall back to :exec type.
+I, [2019-04-18T18:02:54.196520 #11860]  INFO -- default-ubuntu-1804: [32m    should match /Welcome to DevOps Rabat Meetup/[0m
+I, [2019-04-18T18:02:54.196670 #11860]  INFO -- default-ubuntu-1804: 
+I, [2019-04-18T18:02:54.196695 #11860]  INFO -- default-ubuntu-1804: Finished in 0.12366 seconds (files took 0.2551 seconds to load)
+I, [2019-04-18T18:02:54.196709 #11860]  INFO -- default-ubuntu-1804: [32m7 examples, 0 failures[0m
+I, [2019-04-18T18:02:54.196721 #11860]  INFO -- default-ubuntu-1804: 
+I, [2019-04-18T18:02:54.212268 #11860]  INFO -- default-ubuntu-1804: Finished verifying <default-ubuntu-1804> (0m16.80s).

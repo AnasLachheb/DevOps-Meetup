@@ -3,13 +3,11 @@
     name: devopsmeetup
     state: present
 
-
 - name: Add the user 'dev' to 'devopsmeetup'
   user:
     name: dev
     comment: Dev Ansible
     group: devopsmeetup
-
 
 - template:
     src: ports.conf.j2
